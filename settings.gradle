@@ -1,0 +1,1 @@
+include ':app', ':javademolib', ':mylibrary', ':twolibrary'

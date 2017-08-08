@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RecordingAnimation.iml" filepath="$PROJECT_DIR$/RecordingAnimation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javademolib/javademolib.iml" filepath="$PROJECT_DIR$/javademolib/javademolib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twolibrary/twolibrary.iml" filepath="$PROJECT_DIR$/twolibrary/twolibrary.iml" />
+    </modules>
+  </component>
+</project>

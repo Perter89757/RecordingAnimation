@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yiguo.recordinganimation.Switch.MeasureActivity">
+
+    <com.yiguo.recordinganimation.Switch.MeasureView
+        android:layout_width="20dp"
+        android:layout_height="10dp"
+        android:background="@android:color/darker_gray" />
+
+    <com.yiguo.recordinganimation.Switch.VLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff9900">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="btn" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="btn" />
+    </com.yiguo.recordinganimation.Switch.VLinearLayout>
+
+    <com.yiguo.recordinganimation.Switch.CircleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@android:color/darker_gray"
+        android:padding="20dp"
+        app:circle_color="@color/RoundColor"
+        app:rad="50" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <com.yiguo.recordinganimation.Switch.CustomImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="20dp"
+        app:image="@drawable/ic_launcher"
+        app:textColor="@color/TimeTextColor"
+        app:textConten="记得记得"
+        app:textSize="20sp" />
+</LinearLayout>

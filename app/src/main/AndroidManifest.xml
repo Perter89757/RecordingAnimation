@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yiguo.recordinganimation">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".ThinkiveApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".TimeOutActivity" />
+        <activity android:name=".ConstraintLayout_Activity" />
+        <activity android:name=".UserViewActivity" />
+        <activity android:name=".ListenerActivity" />
+        <activity android:name=".EmojiActivity" />
+        <activity android:name=".CallBackActivity" />
+        <activity android:name=".popwindows.PopWindowActivity" />
+        <activity android:name=".Switch.SwitchActivity" />
+        <activity android:name=".Switch.ViewActivity" />
+        <activity android:name=".Switch.CollapseViewActivity" />
+        <activity android:name=".Switch.MeasureActivity" />
+        <activity
+            android:name=".Switch.BarActivity"
+            android:theme="@style/NoActionBar">
+
+        </activity>
+
+
+        <activity android:name=".HooliganActivity">
+
+        </activity>
+    </application>
+
+</manifest>

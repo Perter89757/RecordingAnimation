@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.yiguo.recordinganimation.Switch.CollapseViewActivity">
+
+    <Button
+        android:id="@+id/CollapseView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="展开View" />
+
+    <Button
+        android:id="@+id/vViewlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="垂直布局" />
+
+    <Button
+        android:id="@+id/b2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="正方形View" />
+    <Button
+        android:id="@+id/b3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="圆形View" />
+
+    <Button
+        android:id="@+id/b4"
+        android:text="跳转界面"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
