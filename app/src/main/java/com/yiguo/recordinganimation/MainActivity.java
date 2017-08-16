@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.yiguo.recordinganimation.Service.ServiceActivity;
 import com.yiguo.recordinganimation.Switch.BarActivity;
 import com.yiguo.recordinganimation.Switch.SwitchActivity;
 import com.yiguo.recordinganimation.Switch.ViewActivity;
@@ -206,6 +207,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BarActivity.class));
+            }
+        });
+
+        findViewById(R.id.button14).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ServiceActivity.class));
             }
         });
 

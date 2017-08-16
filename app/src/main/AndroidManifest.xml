@@ -35,14 +35,20 @@
         <activity android:name=".Switch.MeasureActivity" />
         <activity
             android:name=".Switch.BarActivity"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".HooliganActivity" />
 
-        </activity>
+        <service
+            android:name=".Service.MyService"
+            android:enabled="true"
+            android:exported="true" />
 
+        <activity android:name=".Service.ServiceActivity" />
 
-        <activity android:name=".HooliganActivity">
-
-        </activity>
+        <service
+            android:name=".Service.DownLoadService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
