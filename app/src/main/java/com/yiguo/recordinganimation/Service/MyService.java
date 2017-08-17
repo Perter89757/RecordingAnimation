@@ -2,45 +2,42 @@ package com.yiguo.recordinganimation.Service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Handler;
+import android.os.Binder;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
+import android.util.Log;
 
 public class MyService extends Service {
     public MyService() {
     }
 
-    private static final int MSG_SUM = 0x110;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 
-    //最好换成HandlerThread的形式
-    private Messenger mMessenger = new Messenger(new Handler() {
-        @Override
-        public void handleMessage(Message msgfromClient) {
-            switch (msgfromClient.what) {
-                //msg 客户端传来的消息
-                case MSG_SUM:
-                    try {
-                        Message msg = Message.obtain(msgfromClient);
-                        String obj = (String) msgfromClient.obj;
-                        msg.what = MSG_SUM;
-                        msg.obj = obj+",我是service";
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return super.onStartCommand(intent, flags, startId);
+    }
 
-                        msgfromClient.replyTo.send(msg);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-            }
-            super.handleMessage(msgfromClient);
-        }
-    });
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
-        return mMessenger.getBinder();
+        return mBinder;
     }
 
-    public void load(){}
+    private MyBinder mBinder = new MyBinder();
+
+    class MyBinder extends Binder {
+
+        public void startDownload() {
+            Log.d("TAG", "startDownload() executed");
+            // 执行具体的下载任务
+        }
+
+    }
 }

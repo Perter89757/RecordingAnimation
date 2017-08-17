@@ -26,6 +26,7 @@ import com.yiguo.recordinganimation.Switch.SwitchActivity;
 import com.yiguo.recordinganimation.Switch.ViewActivity;
 import com.yiguo.recordinganimation.exception.NoLoginNameException;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
+import com.yiguo.recordinganimation.service.MyService;
 
 import java.io.File;
 import java.util.Timer;
@@ -163,14 +164,12 @@ public class MainActivity extends AppCompatActivity {
 //                }
                 if (ContextCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.CALL_PHONE)
-                        != PackageManager.PERMISSION_GRANTED)
-                {
+                        != PackageManager.PERMISSION_GRANTED) {
 
                     ActivityCompat.requestPermissions(MainActivity.this,
                             new String[]{Manifest.permission.CALL_PHONE},
                             MY_PERMISSIONS_REQUEST_CALL_PHONE);
-                } else
-                {
+                } else {
                     callPhone();
                 }
 
@@ -207,6 +206,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BarActivity.class));
+            }
+        });
+        findViewById(R.id.button14).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyService.class);
+                startService(intent);
             }
         });
 
@@ -257,8 +263,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void callPhone()
-    {
+    public void callPhone() {
         Intent intent = new Intent(Intent.ACTION_CALL);
         Uri data = Uri.parse("tel:" + "10086");
         intent.setData(data);
@@ -266,16 +271,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
-    {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
-        if (requestCode == MY_PERMISSIONS_REQUEST_CALL_PHONE)
-        {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
+        if (requestCode == MY_PERMISSIONS_REQUEST_CALL_PHONE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 callPhone();
-            } else
-            {
+            } else {
                 // Permission Denied
                 Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
             }

@@ -39,16 +39,13 @@
         <activity android:name=".HooliganActivity" />
 
         <service
-            android:name=".Service.MyService"
+            android:name=".Service.PushService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:process="push" />
 
         <activity android:name=".Service.ServiceActivity" />
 
-        <service
-            android:name=".Service.DownLoadService"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>
