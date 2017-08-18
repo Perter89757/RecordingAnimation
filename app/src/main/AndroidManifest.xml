@@ -42,7 +42,7 @@
             android:name=".Service.PushService"
             android:enabled="true"
             android:exported="true"
-            android:process="push" />
+            android:process=":push" />
 
         <activity android:name=".Service.ServiceActivity" />
 

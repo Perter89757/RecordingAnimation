@@ -21,10 +21,8 @@ public class OnepxReceiver extends BroadcastReceiver {
             Intent it = new Intent(context, HooliganActivity.class);
             it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(it);
-            LogUtils.i("1px--screen off-");
         } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
             context.sendBroadcast(new Intent("finish activity"));
-            LogUtils.i("1px--screen on-");
         }
     }
 

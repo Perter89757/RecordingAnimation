@@ -10,6 +10,7 @@ package com.yiguo.recordinganimation.Service;
  */
 
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
@@ -18,11 +19,14 @@ import android.util.Log;
 import com.yiguo.recordinganimation.callback.CallBack;
 
 public class PushServiceProxy implements IPushService {
-    private  Messenger messengerFormService;
-    private int formService;
 
-    public PushServiceProxy(Messenger messengerFormService) {
-       this.messengerFormService = messengerFormService;
+    private int formService;
+    private final Messenger messenger_service;
+
+    //将服务的信使传递过来
+    public PushServiceProxy(IBinder service) {
+        messenger_service = new Messenger(service);
+
     }
 
     @Override
@@ -32,11 +36,12 @@ public class PushServiceProxy implements IPushService {
         message.replyTo = messengerActivity;
         //服务器的信使
         try {
-            messengerFormService.send(message);
+            messenger_service.send(message);
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        callBack.onerror("service返回数据:"+formService);
+     //   callBack.onerror("service返回数据:"+formService);
     }
 
 

@@ -20,13 +20,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.yiguo.recordinganimation.Service.MyService;
 import com.yiguo.recordinganimation.Service.ServiceActivity;
 import com.yiguo.recordinganimation.Switch.BarActivity;
 import com.yiguo.recordinganimation.Switch.SwitchActivity;
 import com.yiguo.recordinganimation.Switch.ViewActivity;
 import com.yiguo.recordinganimation.exception.NoLoginNameException;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
-import com.yiguo.recordinganimation.service.MyService;
 
 import java.io.File;
 import java.util.Timer;
@@ -211,17 +211,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button14).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyService.class);
-                startService(intent);
+                Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
+                startActivity(intent);
             }
         });
 
-        findViewById(R.id.button14).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ServiceActivity.class));
-            }
-        });
 
 
         //反射调用

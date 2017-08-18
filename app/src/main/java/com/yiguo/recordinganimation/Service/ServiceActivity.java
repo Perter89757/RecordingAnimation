@@ -16,24 +16,19 @@ import com.yiguo.recordinganimation.callback.CallBack;
 
 public class ServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button startService;
-
-    private Button stopService;
-
-    private Button bindService;
-
-    private Button unbindService;
-    private PushServiceImpl pushService;
     private Button login;
     private Button stop_service;
     private Button unbind_service;
+    private PushServiceProxy pushServiceProxy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
         Intent intent = new Intent(this, PushService.class);
-        startActivity(intent);
+        startService(intent);
+        tkCallBack.registerBackReceiver(this);
+
         login = (Button) findViewById(R.id.login);
         stop_service = (Button) findViewById(R.id.stop_service);
         unbind_service = (Button) findViewById(R.id.unbind_service);
@@ -48,7 +43,7 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
         super.onResume();
         Intent intent = new Intent(this, PushService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
-        PushServiceProxy pushServiceImp = new PushServiceProxy(pushService.messenger_Service);
+
     }
 
     @Override
@@ -62,7 +57,7 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
                 unbindService(connection);
                 break;
             case R.id.login:
-                pushService.login(12345, new CallBack() {
+                pushServiceProxy.login(12345, new tkCallBack(new CallBack() {
                     @Override
                     public void onsuceess() {
 
@@ -70,9 +65,9 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 
                     @Override
                     public void onerror(String stirng) {
-                        Log.d("TAG","activity回调的数据:"+stirng);
+                        Log.d("TAG","回调到activity:"+stirng);
                     }
-                });
+                }));
                 break;
 
         }
@@ -87,7 +82,8 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 
         @Override//服务连接,调用服务的方法
         public void onServiceConnected(ComponentName name, IBinder service) {
-            pushService = (PushServiceImpl) (service);
+             pushServiceProxy = new PushServiceProxy(service);
+
         }
     };
 }

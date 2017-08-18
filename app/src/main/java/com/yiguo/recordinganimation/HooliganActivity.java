@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,6 +18,7 @@ public class HooliganActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("HooliganActivity","onCreate");
         Window window = getWindow();
         window.setGravity(Gravity.LEFT | Gravity.TOP);
         WindowManager.LayoutParams params = window.getAttributes();
@@ -43,11 +45,10 @@ public class HooliganActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        LogUtils.i("===onDestroy===");
+        Log.d("HooliganActivity","===onDestroy===");
         try {
             unregisterReceiver(br);
         } catch (IllegalArgumentException e) {
-            LogUtils.e("receiver is not resisted: " + e);
         }
         super.onDestroy();
     }
@@ -59,13 +60,10 @@ public class HooliganActivity extends AppCompatActivity {
     }
 
     private void checkScreenOn(String methodName) {
-        LogUtils.d("from call method: " + methodName);
         PowerManager pm = (PowerManager) HooliganActivity.this.getSystemService(Context.POWER_SERVICE);
         boolean isScreenOn = pm.isScreenOn();
-        LogUtils.i("isScreenOn: " + isScreenOn);
         if (isScreenOn) {
             finish();
         }
-
     }
 }

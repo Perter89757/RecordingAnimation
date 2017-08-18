@@ -21,8 +21,7 @@ public class PushService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        service = new PushServiceImpl();
-
+        service = new PushServiceImpl(this);
 
     }
 
