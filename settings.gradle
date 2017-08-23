@@ -1,1 +1,2 @@
 include ':app', ':javademolib', ':mylibrary', ':twolibrary'
+include ':notifications通知栏学习'
