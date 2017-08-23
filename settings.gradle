@@ -1,2 +1,3 @@
 include ':app', ':javademolib', ':mylibrary', ':twolibrary'
 include ':notifications通知栏学习'
+include ':android_渐变状态栏'

@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".TimeOutActivity" />
         <activity android:name=".ConstraintLayout_Activity" />
-        <activity android:name=".UserViewActivity" />
+        <activity android:name=".View.UserViewActivity" />
         <activity android:name=".ListenerActivity" />
         <activity android:name=".EmojiActivity" />
         <activity android:name=".CallBackActivity" />
@@ -45,7 +45,9 @@
             android:process=":push" />
 
         <activity android:name=".Service.ServiceActivity" />
+        <activity android:name=".ChenjinActivity" android:theme="@style/NoActionBar">
 
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/action_bar_height"
+    android:background="#aabbcc"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:paddingLeft="10dp">
+
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:drawableLeft="@drawable/back"
+        android:text="动态"
+        android:textColor="#b8e7fe"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="好友动态"
+        android:textColor="#b8e7fe"
+        android:textSize="17sp" />
+
+</FrameLayout>

@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
+import com.yiguo.recordinganimation.utils.FileUtils;
+import com.yiguo.recordinganimation.utils.LogUtils;
+
 /**
  * author: huang_yanhui
  * data:2017/6/8

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.llew.sx.scroll.FlexibleScrollView
+        android:id="@+id/flexible_scroll_vew"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/flexible_header_view"
+                layout="@layout/flexible_header_layout" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="我是第一行" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="我是第二行" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="我是第三行" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="我是第四行" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="我是第五行" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="我是第六行" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="我是第七行" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="我是第八行" />
+        </LinearLayout>
+    </com.llew.sx.scroll.FlexibleScrollView>
+
+    <include
+        android:id="@+id/custom_action_bar"
+        layout="@layout/action_bar_layout" />
+
+</FrameLayout>

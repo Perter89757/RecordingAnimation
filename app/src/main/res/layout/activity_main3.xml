@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.yiguo.recordinganimation.MyLayout
+<com.yiguo.recordinganimation.View.MyLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_layout"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Button2" />
 
-    <com.yiguo.recordinganimation.MyViewGruop
+    <com.yiguo.recordinganimation.View.MyViewGruop
         android:id="@+id/myViewGroup"
         android:visibility="gone"
         android:layout_width="match_parent"
@@ -62,9 +62,9 @@
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
-    </com.yiguo.recordinganimation.MyViewGruop>
+    </com.yiguo.recordinganimation.View.MyViewGruop>
 
-    <com.yiguo.recordinganimation.MyButtonGroup
+    <com.yiguo.recordinganimation.View.MyButtonGroup
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -91,6 +91,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button2" />
-    </com.yiguo.recordinganimation.MyButtonGroup>
-</com.yiguo.recordinganimation.MyLayout>
+    </com.yiguo.recordinganimation.View.MyButtonGroup>
+</com.yiguo.recordinganimation.View.MyLayout>
 

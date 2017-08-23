@@ -10,8 +10,6 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -20,11 +18,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.yiguo.recordinganimation.Service.MyService;
 import com.yiguo.recordinganimation.Service.ServiceActivity;
 import com.yiguo.recordinganimation.Switch.BarActivity;
 import com.yiguo.recordinganimation.Switch.SwitchActivity;
 import com.yiguo.recordinganimation.Switch.ViewActivity;
+import com.yiguo.recordinganimation.View.UserViewActivity;
 import com.yiguo.recordinganimation.exception.NoLoginNameException;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
 
@@ -32,7 +30,7 @@ import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.yiguo.recordinganimation.LogUtils.getLogDirectory;
+import static com.yiguo.recordinganimation.utils.LogUtils.getLogDirectory;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,71 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver receiver;
 
     public static void main(String[] s) {
-        String s1 = "/storage/emulated/0/储宝宝/cach/7426dc40-a03b-4f54-b9a6-8bfc0cbc2c4c.mp4/B1C42F68-13CB-4B21-8761-E912C3AA2387";
-        String s11 = "7426dc40-a03b-4f54-b9a6-8bfc0cbc2c4c.mp4";
-        String s2 = "123";
-        String localPath = s1;
-        int separator = localPath.lastIndexOf(File.separator);
-        int separator1 = localPath.lastIndexOf(".");
-        int separator12 = localPath.lastIndexOf("/");
-//        System.out.println("位置: " + separator);
-//        System.out.println("位置:\"/\" " + separator1);
-//        if (separator1 != -1) {
-//            String local = localPath.substring(0, separator1);
-//            String local2 = localPath.substring(separator12 + 1, localPath.length());
-//
-//            System.out.println("local: " + local);
-//            System.out.println("local2: " + local2 + ".mp4");
-//        }
-
-
-        final Thread thread = new Thread(new Runnable() {
-
-            public int total;
-
-            @Override
-            public void run() {
-                synchronized (this) {
-                    System.out.println("ThreadB is running..");
-                    for (int i = 0; i < 3; i++) {
-                        total += i;
-                        try {
-                            wait(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println("total is " + total);
-                    }
-                    notify();
-                }
-            }
-        });
-
-        thread.start();
-        System.out.println("1.b线程.start ");
-        synchronized (thread) {
-            System.out.println("2.b线程等待");
-            try {
-                thread.wait();
-                System.out.println("b线程等待结束,运行");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("b线程运行结束");
 
     }
 
-    private RecordView mRecorfView;
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            int db = (int) (Math.random() * 100);
-            mRecorfView.setVolume(db);
-        }
-    };
-    private int nowModel = RecordView.MODEL_RECORD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -215,6 +151,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        findViewById(R.id.button15).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChenjinActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -261,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CALL);
         Uri data = Uri.parse("tel:" + "10086");
         intent.setData(data);
-        startActivity(intent);
+     //   startActivity(intent);
     }
 
     @Override

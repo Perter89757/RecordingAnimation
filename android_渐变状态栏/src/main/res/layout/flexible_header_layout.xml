@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/header_height">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ttt" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom"
+        android:background="#33333333"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="相册"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="说说"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="个性化"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="\@ 与我相关"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</FrameLayout>
