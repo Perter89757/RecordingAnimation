@@ -10,6 +10,9 @@
             android:exported="true"
             android:permission="1000"
             android:process=":AidlService" />
+
+        <service android:name=".RemoteCallBackService"
+            android:process=":remote"/>
     </application>
 
 </manifest>

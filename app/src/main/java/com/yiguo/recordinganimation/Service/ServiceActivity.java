@@ -17,8 +17,7 @@ import com.yiguo.recordinganimation.callback.CallBack;
 public class ServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button login;
-    private Button stop_service;
-    private Button unbind_service;
+
     private PushServiceProxy pushServiceProxy;
 
     @Override
@@ -30,12 +29,10 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
         tkCallBack.registerBackReceiver(this);
 
         login = (Button) findViewById(R.id.login);
-        stop_service = (Button) findViewById(R.id.stop_service);
-        unbind_service = (Button) findViewById(R.id.unbind_service);
+
 
         login.setOnClickListener(this);
-        stop_service.setOnClickListener(this);
-        unbind_service.setOnClickListener(this);
+
     }
 
     @Override
@@ -49,13 +46,6 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.stop_service:
-                Intent stopIntent = new Intent(this, MyService.class);
-                stopService(stopIntent);
-                break;
-            case R.id.unbind_service:
-                unbindService(connection);
-                break;
             case R.id.login:
                 pushServiceProxy.login(12345, new tkCallBack(new CallBack() {
                     @Override

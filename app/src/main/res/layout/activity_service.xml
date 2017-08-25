@@ -7,20 +7,7 @@
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="登录" />
+        android:text="远程service登录" />
 
-    <Button
-        android:id="@+id/stop_service"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stop Service" />
-
-
-    <Button
-        android:id="@+id/unbind_service"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Unbind Service"
-        />
 
 </LinearLayout>

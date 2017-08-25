@@ -45,6 +45,9 @@
             android:enabled="true"
             android:exported="true"
             android:process=":push" />
+        <service android:name=".Service.RemoteService.RemoteService"
+            android:process=":remote"
+            />
 
         <activity android:name=".Service.ServiceActivity" />
         <activity

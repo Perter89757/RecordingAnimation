@@ -39,7 +39,7 @@ public class IndependentService  extends Service {
         private User user;
 
         public ServiceBinder() {
-            user = new User(21, "service_XiaoMing_21");
+            user = new User(21, "service定义_XiaoMing_21");
         }
 
 
