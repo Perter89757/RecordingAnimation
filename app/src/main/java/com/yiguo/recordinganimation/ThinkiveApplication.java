@@ -7,9 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
-import com.yiguo.recordinganimation.utils.FileUtils;
-import com.yiguo.recordinganimation.utils.LogUtils;
-
 /**
  * author: huang_yanhui
  * data:2017/6/8
@@ -25,20 +22,6 @@ public class ThinkiveApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        FileUtils.initFileDir(this);
-        LogUtils.init(this);
-        LogUtils.setLogLevel(LogUtils.LEVEL_DEBUG);
-        //捕获异常崩溃,防止IM登录异常
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(Thread thread, Throwable ex) {
-                LogUtils.e("uncaughtException",ex);
-                //退出程序
-                android.os.Process.killProcess(android.os.Process.myPid());
-                System.exit(1);
-            }
-        });
-
         //全局动态广播
         receiver = new BroadcastReceiver() {
             @Override
@@ -53,8 +36,6 @@ public class ThinkiveApplication extends Application {
 
 
     }
-
-
 
     public static Context getAppContext() {
         return ThinkiveApplication.getAppContext();

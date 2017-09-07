@@ -34,7 +34,7 @@ class tkCallBack implements CallBack {
     private static CustomReciver callbackReceiver = new CustomReciver();
 
     @Override
-    public void onsuceess() {
+    public void onsuceess(Object o) {
 
     }
 

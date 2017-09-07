@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,9 +25,11 @@ import com.yiguo.recordinganimation.Switch.SwitchActivity;
 import com.yiguo.recordinganimation.Switch.ViewActivity;
 import com.yiguo.recordinganimation.View.UserViewActivity;
 import com.yiguo.recordinganimation.exception.NoLoginNameException;
+import com.yiguo.recordinganimation.mqtt.MQTTActivity;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
 
 import java.io.File;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -75,13 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ListenerActivity.class));
 
-            }
-        });
         findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,29 +155,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        findViewById(R.id.button16).setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.button17).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AIDLActivity.class);
+                Intent intent = new Intent(MainActivity.this, MQTTActivity.class);
                 startActivity(intent);
             }
         });
 
-
-
-        //反射调用
-//        Class<Test> testClass = Test.class;
-//        try {
-//            Method privateMethod = testClass.getDeclaredMethod("privateMethod", null);
-//            privateMethod.setAccessible(true);
-//            privateMethod.invoke(new Test(), null);
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
 
 
         getAppCache(MainActivity.this);
@@ -192,7 +175,9 @@ public class MainActivity extends AppCompatActivity {
         netChangeReceiver = new NetChangeReceiver();
         registerReceiver(netChangeReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
-
+        /**
+         * 自定义异常
+         */
         try {
             login("da");
         } catch (NoLoginNameException e) {
@@ -200,6 +185,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         OnepxReceiver.register1pxReceiver(this);
+
+        //Debug.waitForDebugger();
+        PackageManager packageManager = this.getPackageManager();
+        Intent intent = new Intent();
+        intent.setAction("com.yiguo.recordinganimation.douban.action.NEW_MESSAGE");
+        List<ResolveInfo> resolveInfos = packageManager.queryBroadcastReceivers(intent, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT);
+        ResolveInfo resolveInfo = resolveInfos.get(0);
+        resolveInfo.toString();
     }
 
 

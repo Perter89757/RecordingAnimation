@@ -1,13 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="远程service登录" />
-
-
+        android:text="远程服务_登录_log" />
+<Button
+    android:id="@+id/dianCan"
+    android:text="AIDL_远程接口回调_点餐系统"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/loadServiceData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进程间_服务和广播回调_豆瓣" />
 </LinearLayout>

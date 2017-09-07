@@ -79,7 +79,7 @@ public class TimeOutActivity extends AppCompatActivity {
                         Log.d("TAG", "线程is wait");
                         o.wait();
                         Log.d("TAG", "线程is run");
-                        callBack.onsuceess();
+                        callBack.onsuceess("");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

@@ -49,8 +49,9 @@ public class PushServiceImpl implements IPushService {
                     FormActivity = msgFormActivity.arg1;
                     Log.d("TAG", "service收到数据:" + FormActivity + "进行登录");
                     login(FormActivity, new CallBack() {
+
                         @Override
-                        public void onsuceess() {
+                        public void onsuceess(Object o) {
 
                         }
 

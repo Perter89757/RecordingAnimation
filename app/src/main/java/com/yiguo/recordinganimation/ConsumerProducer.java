@@ -27,7 +27,7 @@ class ConsumerProducer {
         while (true) {
             try {
                 blockingQueue.put(1);
-                callBack.onsuceess();
+                callBack.onsuceess("");
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 callBack.onerror(e.getMessage());

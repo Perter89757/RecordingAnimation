@@ -10,11 +10,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android_渐变状态栏" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/javademolib" />
-            <option value="$PROJECT_DIR$/mylibrary" />
             <option value="$PROJECT_DIR$/notifications通知栏学习" />
             <option value="$PROJECT_DIR$/service_aidl" />
-            <option value="$PROJECT_DIR$/twolibrary" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

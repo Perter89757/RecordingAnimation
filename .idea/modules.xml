@@ -5,11 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/RecordingAnimation.iml" filepath="$PROJECT_DIR$/RecordingAnimation.iml" />
       <module fileurl="file://$PROJECT_DIR$/android_渐变状态栏/android_渐变状态栏.iml" filepath="$PROJECT_DIR$/android_渐变状态栏/android_渐变状态栏.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/javademolib/javademolib.iml" filepath="$PROJECT_DIR$/javademolib/javademolib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/notifications通知栏学习/notifications通知栏学习.iml" filepath="$PROJECT_DIR$/notifications通知栏学习/notifications通知栏学习.iml" />
       <module fileurl="file://$PROJECT_DIR$/service_aidl/service_aidl.iml" filepath="$PROJECT_DIR$/service_aidl/service_aidl.iml" />
-      <module fileurl="file://$PROJECT_DIR$/twolibrary/twolibrary.iml" filepath="$PROJECT_DIR$/twolibrary/twolibrary.iml" />
     </modules>
   </component>
 </project>
