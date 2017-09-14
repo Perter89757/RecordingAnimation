@@ -21,3 +21,18 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    // Sdk and tools
+    minSdkVersion = 15
+    targetSdkVersion = 23
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.2'
+
+    // App dependencies
+    supportLibraryVersion = '25.3.1'
+    picassoVersion = '2.5.2'
+    thinkiveFrameworkVersion = '2.0.2.jar'
+    glideVersion = '3.7.0'
+    butterknifeVersion = '8.4.0'
+}

@@ -29,7 +29,7 @@
         <activity android:name=".ConstraintLayout_Activity" />
         <activity android:name=".View.UserViewActivity" />
         <activity android:name=".EmojiActivity" />
-        <activity android:name=".CallBackActivity" />
+        <activity android:name=".callback.CallBackActivity" />
         <activity android:name=".popwindows.PopWindowActivity" />
         <activity android:name=".Switch.SwitchActivity" />
         <activity android:name=".Switch.ViewActivity" />
@@ -45,9 +45,8 @@
         <activity
             android:name=".ChenjinActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".AIDLActivity" />
-        <activity android:name=".mqtt.MQTTActivity"></activity>
-
+        <activity android:name=".Service.AIDLActivity" />
+        <activity android:name=".mqtt.MQTTActivity" />
 
         <service
             android:name=".Service.PushService"
@@ -58,25 +57,29 @@
             android:name=".Service.RemoteService.RemoteService"
             android:process=":remote" />
         <service
-            android:name="com.yiguo.recordinganimation.Service.loadServiceData.DouBanService"
+            android:name=".Service.loadServiceData.DouBanService"
             android:process=":douban" />
         <service
             android:name=".Service.loadServiceData.RequstDataService"
             android:process=":douban" />
         <service android:name=".Service.loadServiceData.ResponseDataIntentService" />
 
-
         <receiver
-            android:name="com.yiguo.recordinganimation.Service.loadServiceData.ResponeDataBroadcardReceiver"
+            android:name=".Service.loadServiceData.ResponeDataBroadcardReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <!--<action android:name="[包名].push.action.NEW_MESSAGE"/>-->
+
+                <!-- <action android:name="[包名].push.action.NEW_MESSAGE"/> -->
                 <action android:name="com.yiguo.recordinganimation.douban.action.NEW_MESSAGE" />
                 <action android:name="com.yiguo.recordinganimation.douban.action.NEW_CMD_MESSAGE" />
             </intent-filter>
         </receiver>
 
+        <activity android:name=".KeepLive.KeepLiveActivity" />
+        <activity android:name=".UI.UiActivity" />
+        <activity android:name=".UI.FlexBoxActivity" />
+        <activity android:name=".Switch.Circle2Activity"></activity>
     </application>
 
 </manifest>

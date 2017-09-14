@@ -24,6 +24,16 @@
             android:text="dialog展示" />
 
         <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
+            android:text="UI效果" />
+
+
+        <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,6 +109,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="MQTT_Demo" />
+
+        <Button
+            android:id="@+id/button18"
+            android:text="进程保活"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>

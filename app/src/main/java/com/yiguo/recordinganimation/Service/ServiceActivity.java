@@ -12,8 +12,6 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
 
-import com.yiguo.recordinganimation.AIDLActivity;
-import com.yiguo.recordinganimation.MainActivity;
 import com.yiguo.recordinganimation.R;
 import com.yiguo.recordinganimation.Service.loadServiceData.CmdMessage;
 import com.yiguo.recordinganimation.Service.loadServiceData.DouBanService;

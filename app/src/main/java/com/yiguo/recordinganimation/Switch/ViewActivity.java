@@ -33,6 +33,13 @@ public class ViewActivity extends AppCompatActivity {
 
             }
         });
+
+        findViewById(R.id.b3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewActivity.this,Circle2Activity.class));
+            }
+        });
         findViewById(R.id.vViewlayout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

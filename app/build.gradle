@@ -5,16 +5,39 @@ android {
     buildToolsVersion = '23.0.2'
     defaultConfig {
         applicationId "com.yiguo.recordinganimation"
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
+    signingConfigs {
+        release {
+            try {
+                keyAlias 'key0'
+                keyPassword KEY_PASSWORD
+                storeFile file('../appkeystroe.jks')
+                storePassword KEYSTORE_PASSWORD
+            } catch (ex) {
+                throw new InvalidUserDataException("keystrot passsword 密码错误")
+            }
+
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -22,6 +45,8 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':service_aidl')
+
+
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.android.support:design:23.0.1'
@@ -29,4 +54,7 @@ dependencies {
     compile 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.android.support:support-annotations:23.1.1'
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.google.android:flexbox:0.2.5'
 }

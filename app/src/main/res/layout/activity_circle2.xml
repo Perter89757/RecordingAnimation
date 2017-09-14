@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yiguo.recordinganimation.Switch.Circle2Activity">
+
+    <com.yiguo.recordinganimation.Switch.绘制圆View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:background="@color/colorPrimaryDark" />
+
+    <com.yiguo.recordinganimation.Switch.WeatherView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

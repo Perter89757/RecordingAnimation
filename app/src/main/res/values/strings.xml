@@ -9,7 +9,6 @@
     </string-array>
 
 
-
     <string name="action_add_connection">Add Connection</string>
     <string name="add_connection_general_label">General</string>
     <string name="add_connection_client_id_label">Client ID</string>
@@ -66,9 +65,8 @@
     <string name="notify_label">Show Notifications</string>
     <string name="subscribe_ok">OK</string>
     <string name="subscribe_cancel">Cancel</string>
-    <string name="qos_text" >QoS: %1$d</string>
+    <string name="qos_text">QoS: %1$d</string>
     <string name="notify_text">Notifications: %1$s</string>
-
 
 
     <!-- Strings for Help Fragment -->

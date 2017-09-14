@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 /**
@@ -27,14 +28,20 @@ public class ThinkiveApplication extends Application {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
-                if(action.equals("ddas")){
-                    Log.d("TAG","接受到其他Activity通知");
+                if (action.equals("ddas")) {
+                    Log.d("TAG", "接受到其他Activity通知");
                 }
             }
         };
-        registerReceiver(receiver,new IntentFilter("ddas"));
+        registerReceiver(receiver, new IntentFilter("ddas"));
 
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     public static Context getAppContext() {

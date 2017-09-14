@@ -1,4 +1,4 @@
-package com.yiguo.recordinganimation;
+package com.yiguo.recordinganimation.callback;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.yiguo.recordinganimation.R;
 import com.yiguo.recordinganimation.Switch.ViewActivity;
 import com.yiguo.recordinganimation.eventListener.DoorListener1;
 import com.yiguo.recordinganimation.eventListener.DoorListener2;
