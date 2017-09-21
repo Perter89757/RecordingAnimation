@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yiguo.recordinganimation.TimeOutActivity">
+    tools:context="com.yiguo.recordinganimation.Temp.TimeOutActivity">
 
     <Button
         android:id="@+id/start"

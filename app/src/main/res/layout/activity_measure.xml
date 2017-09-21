@@ -52,13 +52,5 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <com.yiguo.recordinganimation.Switch.CustomImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:padding="20dp"
-        app:image="@drawable/ic_launcher"
-        app:textColor="@color/TimeTextColor"
-        app:textConten="记得记得"
-        app:textSize="20sp" />
+
 </LinearLayout>

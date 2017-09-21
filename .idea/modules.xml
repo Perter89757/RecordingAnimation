@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/RecordingAnimation.iml" filepath="$PROJECT_DIR$/RecordingAnimation.iml" />
       <module fileurl="file://$PROJECT_DIR$/android_渐变状态栏/android_渐变状态栏.iml" filepath="$PROJECT_DIR$/android_渐变状态栏/android_渐变状态栏.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/applicationTest(全局变量和intent传值)/applicationTest(全局变量和intent传值).iml" filepath="$PROJECT_DIR$/applicationTest(全局变量和intent传值)/applicationTest(全局变量和intent传值).iml" />
       <module fileurl="file://$PROJECT_DIR$/notifications通知栏学习/notifications通知栏学习.iml" filepath="$PROJECT_DIR$/notifications通知栏学习/notifications通知栏学习.iml" />
       <module fileurl="file://$PROJECT_DIR$/service_aidl/service_aidl.iml" filepath="$PROJECT_DIR$/service_aidl/service_aidl.iml" />
     </modules>

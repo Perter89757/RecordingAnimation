@@ -4,16 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yiguo.recordinganimation.Switch.Circle2Activity">
+    android:background="@drawable/bj"
+    tools:context="com.yiguo.recordinganimation.View.Circle2Activity"
+    android:orientation="horizontal">
 
-    <com.yiguo.recordinganimation.Switch.绘制圆View
+    <com.yiguo.recordinganimation.View.绘制圆View
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:visibility="gone"
         android:background="@color/colorPrimaryDark" />
 
-    <com.yiguo.recordinganimation.Switch.WeatherView
+    <com.yiguo.recordinganimation.View.WeatherView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.yiguo.recordinganimation.View.蜘蛛网View
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

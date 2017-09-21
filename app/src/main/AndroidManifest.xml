@@ -25,25 +25,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TimeOutActivity" />
-        <activity android:name=".ConstraintLayout_Activity" />
-        <activity android:name=".View.UserViewActivity" />
-        <activity android:name=".EmojiActivity" />
+        <activity android:name=".Temp.TimeOutActivity" />
+        <activity android:name=".Temp.EmojiActivity" />
         <activity android:name=".callback.CallBackActivity" />
         <activity android:name=".popwindows.PopWindowActivity" />
-        <activity android:name=".Switch.SwitchActivity" />
-        <activity android:name=".Switch.ViewActivity" />
-        <activity android:name=".Switch.CollapseViewActivity" />
-        <activity android:name=".Switch.MeasureActivity" />
-        <activity
-            android:name=".Switch.BarActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".HooliganActivity" />
+        <activity android:name=".View.ViewActivity" />
+        <activity android:name=".Temp.HooliganActivity" />
         <activity android:name=".Service.ServiceActivity" />
         <activity
-            android:name=".ChenjinActivity"
+            android:name=".View.ChenjinActivity"
             android:theme="@style/NoActionBar" />
         <activity android:name=".Service.AIDLActivity" />
         <activity android:name=".mqtt.MQTTActivity" />
@@ -79,7 +69,10 @@
         <activity android:name=".KeepLive.KeepLiveActivity" />
         <activity android:name=".UI.UiActivity" />
         <activity android:name=".UI.FlexBoxActivity" />
-        <activity android:name=".Switch.Circle2Activity"></activity>
+        <activity android:name=".View.Circle2Activity" />
+        <activity android:name=".View.Se4CodeActivity" />
+        <activity android:name=".View.RaderActivity" />
+        <activity android:name=".ActivityKiller.AppKillerActivity"></activity>
     </application>
 
 </manifest>

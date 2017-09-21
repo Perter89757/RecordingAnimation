@@ -9,32 +9,23 @@
     android:padding="10dp"
     tools:context="com.yiguo.recordinganimation.Switch.CollapseViewActivity">
 
-    <Button
-        android:id="@+id/CollapseView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="展开View" />
 
-    <Button
-        android:id="@+id/vViewlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="垂直布局" />
-
-    <Button
-        android:id="@+id/b2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="正方形View" />
     <Button
         android:id="@+id/b3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="圆形View" />
-
+        android:text="HW天气View" />
     <Button
-        android:id="@+id/b4"
-        android:text="跳转界面"
+        android:id="@+id/B4"
+        android:text="方框验证码"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/b5"
+        android:text="z蜘蛛网路"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
 </LinearLayout>

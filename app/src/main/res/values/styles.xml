@@ -22,4 +22,13 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
+    <style name="text_editStyle" >
+        <item name="android:layout_height">47dp</item>
+        <item name="android:layout_width">47dp</item>
+        <item name="android:background">@mipmap/bg_verify</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+
+    </style>
+
 </resources>

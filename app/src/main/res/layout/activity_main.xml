@@ -9,19 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
         android:orientation="vertical"
         android:padding="10dp">
 
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="18dp"
-            android:text="dialog展示" />
 
         <Button
             android:id="@+id/button2"
@@ -41,16 +31,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="18dp"
             android:text="超时处理" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="18dp"
-            android:text="事件分发" />
-
 
 
         <Button
@@ -78,21 +58,11 @@
             android:text="popwindow" />
 
         <Button
-            android:id="@+id/button11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="按钮开关" />
-
-        <Button
             android:id="@+id/button12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="自定义View" />
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="webView软键盘" />
+
         <Button
             android:id="@+id/button14"
             android:layout_width="wrap_content"
@@ -113,6 +83,11 @@
         <Button
             android:id="@+id/button18"
             android:text="进程保活"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/button19"
+            android:text="后台回收"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yiguo.recordinganimation.R;
-import com.yiguo.recordinganimation.Switch.ViewActivity;
+import com.yiguo.recordinganimation.View.ViewActivity;
 import com.yiguo.recordinganimation.eventListener.DoorListener1;
 import com.yiguo.recordinganimation.eventListener.DoorListener2;
 import com.yiguo.recordinganimation.eventListener.DoorManager;
