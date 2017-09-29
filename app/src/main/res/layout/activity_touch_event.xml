@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <com.yiguo.recordinganimation.View.TouchEvent.MyLinearLayout
+        android:id="@+id/textViewLayout"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:background="@color/colorPrimaryDark">
+
+        <com.yiguo.recordinganimation.View.TouchEvent.MyTextView
+            android:id="@+id/textView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@color/colorAccent"
+            android:gravity="center"></com.yiguo.recordinganimation.View.TouchEvent.MyTextView>
+    </com.yiguo.recordinganimation.View.TouchEvent.MyLinearLayout>
+
+</RelativeLayout>

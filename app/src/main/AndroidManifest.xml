@@ -72,7 +72,12 @@
         <activity android:name=".View.Circle2Activity" />
         <activity android:name=".View.Se4CodeActivity" />
         <activity android:name=".View.RaderActivity" />
-        <activity android:name=".ActivityKiller.AppKillerActivity"></activity>
+        <activity android:name=".ActivityKiller.AppKillerActivity" />
+        <activity android:name=".UI.AutoLayoutActivity" />
+        <activity android:name=".eventBus.EventBusActivity" />
+        <activity android:name=".eventBus.EventBusCActivity" />
+        <activity android:name=".UI.GlideActivity" />
+        <activity android:name=".View.TouchEvent.TouchEventActivity"></activity>
     </application>
 
 </manifest>

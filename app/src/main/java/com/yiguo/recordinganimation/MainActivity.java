@@ -1,49 +1,38 @@
 package com.yiguo.recordinganimation;
 
-import android.app.LauncherActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.yiguo.recordinganimation.ActivityKiller.AppKillerActivity;
 import com.yiguo.recordinganimation.KeepLive.KeepLiveActivity;
 import com.yiguo.recordinganimation.Service.ServiceActivity;
 import com.yiguo.recordinganimation.Temp.EmojiActivity;
 import com.yiguo.recordinganimation.Temp.OnepxReceiver;
 import com.yiguo.recordinganimation.Temp.TimeOutActivity;
+import com.yiguo.recordinganimation.UI.AutoLayoutActivity;
+import com.yiguo.recordinganimation.UI.GlideActivity;
 import com.yiguo.recordinganimation.UI.UiActivity;
 import com.yiguo.recordinganimation.View.ChenjinActivity;
 import com.yiguo.recordinganimation.View.ViewActivity;
 import com.yiguo.recordinganimation.callback.CallBackActivity;
-import com.yiguo.recordinganimation.exception.AppStatusConstant;
-import com.yiguo.recordinganimation.exception.AppStatusManager;
+import com.yiguo.recordinganimation.eventBus.EventBusActivity;
+import com.yiguo.recordinganimation.eventBus.MessageEvent;
 import com.yiguo.recordinganimation.mqtt.MQTTActivity;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
 
+import org.greenrobot.eventbus.EventBus;
 
-public class MainActivity extends BaseActivity {
+
+public class MainActivity extends AppCompatActivity {
 
     public static void main(String[] s) {
 
     }
 
     @Override
-    protected void restartApp() {
-        super.restartApp();
-        Toast.makeText(getApplicationContext(),"应用被回收重启",Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this,LauncherActivity.class));
-        finish();
-    }
-
-    @Override
-    protected void setUpViewAndData() {
-
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
-        AppStatusManager.getInstance().setAppStatus(AppStatusConstant.STATUS_NORMAL);//进入应用初始化设置成未登录状态
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -138,7 +127,23 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.button19).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AppKillerActivity.class);
+                Intent intent = new Intent(MainActivity.this, AutoLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.button20).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EventBus.getDefault().postSticky(new MessageEvent("粘性事件"));
+                Intent intent = new Intent(MainActivity.this, EventBusActivity.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.button21).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GlideActivity.class);
                 startActivity(intent);
             }
         });
@@ -148,4 +153,10 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+     //  EventBus.getDefault().post(new MessageEvent("Main发送一条消息"));//普通消息事件
+    }
 }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bj"
     tools:context="com.yiguo.recordinganimation.View.Circle2Activity"
     android:orientation="horizontal">
 
@@ -21,6 +20,13 @@
         android:layout_height="match_parent" />
 
     <com.yiguo.recordinganimation.View.蜘蛛网View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <com.yiguo.recordinganimation.View.LoadingCircleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.yiguo.recordinganimation.R;
+import com.yiguo.recordinganimation.View.TouchEvent.TouchEventActivity;
 
 public class ViewActivity extends AppCompatActivity {
 
@@ -38,6 +39,11 @@ public class ViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ViewActivity.this, RaderActivity.class));
+            }
+        });        findViewById(R.id.b6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewActivity.this, TouchEventActivity.class));
             }
         });
 
