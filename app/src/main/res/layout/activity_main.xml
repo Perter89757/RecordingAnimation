@@ -68,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="进程通信" />
+
         <Button
             android:id="@+id/button15"
             android:layout_width="wrap_content"
@@ -82,9 +83,9 @@
 
         <Button
             android:id="@+id/button18"
-            android:text="进程保活"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="进程保活" />
 
         <Button
             android:id="@+id/button19"
@@ -104,6 +105,23 @@
             android:layout_height="wrap_content"
             android:text="图片加载" />
 
+        <Button
+            android:id="@+id/button22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dagger" />
+
+        <Button
+            android:id="@+id/button23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="数据库" />
+
+        <Button
+            android:id="@+id/button24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment" />
 
 
     </LinearLayout>

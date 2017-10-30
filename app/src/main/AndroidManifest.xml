@@ -77,7 +77,11 @@
         <activity android:name=".eventBus.EventBusActivity" />
         <activity android:name=".eventBus.EventBusCActivity" />
         <activity android:name=".UI.GlideActivity" />
-        <activity android:name=".View.TouchEvent.TouchEventActivity"></activity>
+        <activity android:name=".View.TouchEvent.TouchEventActivity" />
+        <activity android:name=".dagger.DaggerActivity" />
+        <activity android:name=".Fragment.DemoFragmentActivity" />
+        <activity android:name=".SQL.SQLActivity" />
+        <activity android:name=".Fragment.LazyFragmentActivity"></activity>
     </application>
 
 </manifest>

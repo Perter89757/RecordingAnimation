@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.yiguo.recordinganimation.Fragment.DemoFragmentActivity;
 import com.yiguo.recordinganimation.KeepLive.KeepLiveActivity;
+import com.yiguo.recordinganimation.SQL.SQLActivity;
 import com.yiguo.recordinganimation.Service.ServiceActivity;
 import com.yiguo.recordinganimation.Temp.EmojiActivity;
 import com.yiguo.recordinganimation.Temp.OnepxReceiver;
@@ -17,12 +19,15 @@ import com.yiguo.recordinganimation.UI.UiActivity;
 import com.yiguo.recordinganimation.View.ChenjinActivity;
 import com.yiguo.recordinganimation.View.ViewActivity;
 import com.yiguo.recordinganimation.callback.CallBackActivity;
+import com.yiguo.recordinganimation.dagger.DaggerActivity;
 import com.yiguo.recordinganimation.eventBus.EventBusActivity;
 import com.yiguo.recordinganimation.eventBus.MessageEvent;
 import com.yiguo.recordinganimation.mqtt.MQTTActivity;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        new AtomicInteger();
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,6 +152,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        findViewById(R.id.button22).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DaggerActivity.class);
+                startActivity(intent);
+            }
+        });      findViewById(R.id.button23).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SQLActivity.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.button24).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DemoFragmentActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         OnepxReceiver.register1pxReceiver(this);
 
@@ -157,6 +183,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
 
         super.onStop();
-     //  EventBus.getDefault().post(new MessageEvent("Main发送一条消息"));//普通消息事件
+        //  EventBus.getDefault().post(new MessageEvent("Main发送一条消息"));//普通消息事件
     }
 }
