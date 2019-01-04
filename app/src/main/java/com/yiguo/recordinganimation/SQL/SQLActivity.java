@@ -88,7 +88,7 @@ public class SQLActivity extends AppCompatActivity {
             cv.put("id", 1);
             cv.put("sname", "xiaoming");
             cv.put("sage", 21);
-            cv.put("ssex", "male");
+            cv.put("sex", "male");
         //调用insert方法，将数据插入数据库
             db.insert("stu_table", null, cv);
         //关闭数据库

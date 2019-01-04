@@ -34,4 +34,5 @@ public class MyTextView extends android.support.v7.widget.AppCompatTextView {
         Log.d("event","MyTextView-onTouchEvent");
         return super.onTouchEvent(event);
     }
+
 }

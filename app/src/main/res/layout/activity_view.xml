@@ -8,8 +8,22 @@
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="com.yiguo.recordinganimation.Switch.CollapseViewActivity">
+    <Button
+        android:text="侧滑删除"
+        android:id="@+id/slideLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="VLayout使用"
+        android:id="@+id/vlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-
+    <Button
+        android:id="@+id/b7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="富文本TextView" />
     <Button
         android:id="@+id/b3"
         android:layout_width="wrap_content"
@@ -25,12 +39,12 @@
         android:text="z蜘蛛网路"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/b6"
-        android:text="事件分发"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:text="事件分发" />
 
 
 </LinearLayout>

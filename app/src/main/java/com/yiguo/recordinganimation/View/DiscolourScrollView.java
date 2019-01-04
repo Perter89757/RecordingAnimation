@@ -10,6 +10,7 @@ import android.widget.ScrollView;
  * time:16:38
  * emaill:huangyh@thinkive.com
  * description:
+ * 重写了onScrollChanged()方法 监听xy值的变化
  */
 
 public class DiscolourScrollView extends ScrollView {

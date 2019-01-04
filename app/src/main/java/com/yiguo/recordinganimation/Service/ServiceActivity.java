@@ -93,14 +93,15 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
                     }
                 });
                 Log.d("DouBanService", "new CallBack---" + remoteCallBack);
+                //用于远程通信
                 String token = storeToken(remoteCallBack);
-                LoadDouBanData(3, 2, token,remoteCallBack );
+                LoadDouBanData(3, 2, token);
+                UploadFilesIntentService.startActionFoo(ServiceActivity.this,"");
                 break;
-
         }
     }
 
-    private void LoadDouBanData(int start,int count,String remoteCallBack_key,RemoteCallBack callBack) {
+    private void LoadDouBanData(int start,int count,String remoteCallBack_key) {
         CmdMessage remoteCmdMsg = new CmdMessage();
         remoteCmdMsg.setCount(start);
         remoteCmdMsg.setStart(count);
@@ -128,6 +129,7 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
     };
 
     public static void notifyRemoteCallBack(int token, DouBanMovie bean){
+        //取出callback,然后调用onsucess
         RemoteCallBack callback = (RemoteCallBack) tokenMap.get(token);
         LogUtils.d("DouBanService", "主进程notifyRemoteCallBack,token = " + token + " , callback = "+ callback);
         callback.onsuceess(bean);

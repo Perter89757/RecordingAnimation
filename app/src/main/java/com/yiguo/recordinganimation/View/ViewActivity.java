@@ -22,6 +22,26 @@ public class ViewActivity extends AppCompatActivity {
     }
 
     private void init() {
+        findViewById(R.id.vlayout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewActivity.this, VLayoutActivity.class));
+
+            }
+        });
+        findViewById(R.id.slideLayout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewActivity.this, SlideLayoutActivity.class));
+
+            }
+        });
+        findViewById(R.id.b7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewActivity.this, SpanTextViewActivity.class));
+            }
+        });
         findViewById(R.id.b3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +60,8 @@ public class ViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(ViewActivity.this, RaderActivity.class));
             }
-        });        findViewById(R.id.b6).setOnClickListener(new View.OnClickListener() {
+        });
+        findViewById(R.id.b6).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ViewActivity.this, TouchEventActivity.class));

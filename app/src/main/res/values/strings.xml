@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">Demo演示</string>
+    <string name="different_color_text">
+<Data><![CDATA[今日已有<font color="#f0717e">1/font>人签到，日榜单排在第<font color="#f0717e">1</font>名]]></Data>
+</string>
+    <string name="from_html_text">
+<![CDATA[
+<h1>Hello World</h1>
+Here is an
+[站外图片上传中……(14)]<i>octopus</i>.<br>
+And here is a
+<a href="http://d.android.com">link</a>.
+]]>
+</string>
 
 
     <string-array name="qos_options">

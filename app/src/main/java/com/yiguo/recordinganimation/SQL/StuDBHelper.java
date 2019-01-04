@@ -30,11 +30,8 @@ public class StuDBHelper extends SQLiteOpenHelper {
 
     // 当第一次创建数据库的时候，调用该方法
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table stu_table(id int,sname varchar(20),sage int,ssex varchar(10))";
-    //输出创建数据库的日志信息
-        Log.i(TAG, "create Database------------->");
-    //execSQL函数用于执行SQL语句
-        db.execSQL(CREATE_BOOK);
+         Log.i(TAG, "create Database------------->");
+         db.execSQL(CREATE_BOOK);
     }
 
     //当更新数据库的时候执行该方法

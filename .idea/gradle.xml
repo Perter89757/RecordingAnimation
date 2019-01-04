@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/android_渐变状态栏" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/applicationTest(全局变量和intent传值)" />
+            <option value="$PROJECT_DIR$/javatestlib" />
             <option value="$PROJECT_DIR$/notifications通知栏学习" />
             <option value="$PROJECT_DIR$/service_aidl" />
           </set>

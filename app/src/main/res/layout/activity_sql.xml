@@ -19,7 +19,7 @@
         android:id="@+id/updateDatabase"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="更新数据库"
+        android:text="升级数据库"
         />
     <Button
         android:id="@+id/insert"

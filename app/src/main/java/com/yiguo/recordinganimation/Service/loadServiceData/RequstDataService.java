@@ -1,6 +1,7 @@
 package com.yiguo.recordinganimation.Service.loadServiceData;
 
 import android.app.IntentService;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -86,6 +87,8 @@ public class RequstDataService extends IntentService {
                 intentReceiver.setAction("com.yiguo.recordinganimation.douban.action.NEW_MESSAGE");
                 intentReceiver.putExtra("new_message",douBanMovie);
                 intentReceiver.putExtra("callback_key",callback_key);
+                 ComponentName componentName = new ComponentName("com.yiguo.recordinganimation","com.yiguo.recordinganimation.Service.loadServiceData.ResponeDataBroadcardReceiver");
+                intentReceiver.setComponent(componentName);
                 sendBroadcast(intentReceiver);
             }
         });

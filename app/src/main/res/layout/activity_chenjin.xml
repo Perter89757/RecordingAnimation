@@ -58,7 +58,8 @@
         </LinearLayout>
     </com.yiguo.recordinganimation.View.DiscolourScrollView>
 
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/textview"
         android:layout_width="match_parent"
         android:layout_height="72dp"

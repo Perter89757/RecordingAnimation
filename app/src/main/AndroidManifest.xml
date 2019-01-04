@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    //TODD兼容Android9.0权限
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
 
     <application
         android:name=".ThinkiveApplication"
@@ -19,11 +23,11 @@
         android:theme="@style/AppTheme"
         tools:replace="theme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".Temp.TimeOutActivity" />
         <activity android:name=".Temp.EmojiActivity" />
@@ -43,6 +47,7 @@
             android:enabled="true"
             android:exported="true"
             android:process=":push" />
+        <service android:name=".Service.UploadFilesIntentService" />
         <service
             android:name=".Service.RemoteService.RemoteService"
             android:process=":remote" />
@@ -76,12 +81,38 @@
         <activity android:name=".UI.AutoLayoutActivity" />
         <activity android:name=".eventBus.EventBusActivity" />
         <activity android:name=".eventBus.EventBusCActivity" />
-        <activity android:name=".UI.GlideActivity" />
+        <activity android:name=".GlideLoad.GlideActivity" />
         <activity android:name=".View.TouchEvent.TouchEventActivity" />
         <activity android:name=".dagger.DaggerActivity" />
         <activity android:name=".Fragment.DemoFragmentActivity" />
         <activity android:name=".SQL.SQLActivity" />
-        <activity android:name=".Fragment.LazyFragmentActivity"></activity>
+        <activity android:name=".Fragment.LazyFragmentActivity" />
+        <activity android:name=".View.SpanTextViewActivity" />
+        <activity android:name=".UI.JSONActivity" />
+        <activity android:name=".View.SlideLayoutActivity" />
+        <activity android:name=".memoryLeake.LeakeActivity" />
+        <activity android:name=".GlideLoad.ListImageLoadActivity" />
+        <activity android:name=".View.VLayoutActivity" />
+
+        <receiver android:name=".KeepLive.receiver.NotificationClickReceiver" />
+
+        <activity android:name=".KeepLive.activity.OnePixelActivity" />
+
+        <service
+            android:name=".KeepLive.service.RemoteService"
+            android:process=":remote" />
+        <service
+            android:name=".KeepLive.service.JobHandlerService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:name=".KeepLive.service.LocalService"/>
+
+        <activity android:name=".KeepLive.KeepLiveAppActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

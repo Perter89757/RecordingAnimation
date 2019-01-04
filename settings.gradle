@@ -1,4 +1,4 @@
-include ':app', ':service_aidl'
+include ':app', ':service_aidl', ':javatestlib'
 include ':notifications通知栏学习'
 include ':android_渐变状态栏'
 include ':applicationTest(全局变量和intent传值)'

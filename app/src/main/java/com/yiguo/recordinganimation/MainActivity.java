@@ -1,12 +1,16 @@
 package com.yiguo.recordinganimation;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.yiguo.recordinganimation.Fragment.DemoFragmentActivity;
+import com.yiguo.recordinganimation.GlideLoad.GlideActivity;
 import com.yiguo.recordinganimation.KeepLive.KeepLiveActivity;
 import com.yiguo.recordinganimation.SQL.SQLActivity;
 import com.yiguo.recordinganimation.Service.ServiceActivity;
@@ -14,34 +18,83 @@ import com.yiguo.recordinganimation.Temp.EmojiActivity;
 import com.yiguo.recordinganimation.Temp.OnepxReceiver;
 import com.yiguo.recordinganimation.Temp.TimeOutActivity;
 import com.yiguo.recordinganimation.UI.AutoLayoutActivity;
-import com.yiguo.recordinganimation.UI.GlideActivity;
+import com.yiguo.recordinganimation.UI.JSONActivity;
 import com.yiguo.recordinganimation.UI.UiActivity;
 import com.yiguo.recordinganimation.View.ChenjinActivity;
 import com.yiguo.recordinganimation.View.ViewActivity;
 import com.yiguo.recordinganimation.callback.CallBackActivity;
 import com.yiguo.recordinganimation.dagger.DaggerActivity;
+import com.yiguo.recordinganimation.dagger.Student;
 import com.yiguo.recordinganimation.eventBus.EventBusActivity;
 import com.yiguo.recordinganimation.eventBus.MessageEvent;
+import com.yiguo.recordinganimation.memoryLeake.LeakeActivity;
 import com.yiguo.recordinganimation.mqtt.MQTTActivity;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
+import com.yiguo.recordinganimation.proxy.StudentHandler;
+import com.yiguo.recordinganimation.proxy.studentInfo;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    public static void main(String[] s) {
+    private static final String TAG = "MainActivity";
 
+    public static void main(String[] s) {
+        studentInfo studentInfo = (studentInfo) Proxy.newProxyInstance(com.yiguo.recordinganimation.proxy.Student.class.getClassLoader(), new Class[]{studentInfo.class}, new StudentHandler());
+        studentInfo.smoke();
+        try {
+            //反射 设置变量的值
+            Class<?> aClass = Class.forName("com.yiguo.recordinganimation.dagger.Student");
+            Object newInstance = aClass.newInstance();
+            Method showMethod = aClass.getDeclaredMethod("show", String.class);
+            showMethod.setAccessible(true);
+            showMethod.invoke(newInstance, "马大哈");
+
+            Field name = aClass.getDeclaredField("name");
+            name.set(newInstance, "Thinkive");
+            Student student = (Student) newInstance;
+            System.out.print("发射变量赋值:" + student.name);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new AtomicInteger();
+        findViewById(R.id.button26).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LeakeActivity.class));
+
+            }
+        });
+
+        findViewById(R.id.button25).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, JSONActivity.class));
+
+            }
+        });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +156,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
+                @SuppressLint("ResourceType")
+                InputStream is = getResources().openRawResource(R.drawable.bj);
+                Bitmap mBitmap = BitmapFactory.decodeStream(is);
+                intent.putExtra("bitmap", mBitmap);
                 startActivity(intent);
             }
         });
@@ -158,7 +215,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DaggerActivity.class);
                 startActivity(intent);
             }
-        });      findViewById(R.id.button23).setOnClickListener(new View.OnClickListener() {
+        });
+        findViewById(R.id.button23).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SQLActivity.class);
