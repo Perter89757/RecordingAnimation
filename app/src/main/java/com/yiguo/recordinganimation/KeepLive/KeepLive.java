@@ -36,11 +36,6 @@ public final class KeepLive {
                 Intent intent = new Intent(application, JobHandlerService.class);
                 application.startService(intent);
                 Log.d("keepLive","启动JobHandlerService");
-   //             application.startService(new Intent(application, LocalService.class));
-                //启动守护进程
-//                Intent intent = new Intent(application, RemoteService.class);
-//                application.startService(intent);
-//              Log.d("keepLive","启动RemoteService");
             } else {
                 //启动本地服务
                 //启动守护进程

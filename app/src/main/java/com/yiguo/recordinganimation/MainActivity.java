@@ -24,57 +24,175 @@ import com.yiguo.recordinganimation.View.ChenjinActivity;
 import com.yiguo.recordinganimation.View.ViewActivity;
 import com.yiguo.recordinganimation.callback.CallBackActivity;
 import com.yiguo.recordinganimation.dagger.DaggerActivity;
-import com.yiguo.recordinganimation.dagger.Student;
 import com.yiguo.recordinganimation.eventBus.EventBusActivity;
 import com.yiguo.recordinganimation.eventBus.MessageEvent;
-import com.yiguo.recordinganimation.memoryLeake.LeakeActivity;
 import com.yiguo.recordinganimation.mqtt.MQTTActivity;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
-import com.yiguo.recordinganimation.proxy.StudentHandler;
-import com.yiguo.recordinganimation.proxy.studentInfo;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    public static void main(String[] s) {
-        studentInfo studentInfo = (studentInfo) Proxy.newProxyInstance(com.yiguo.recordinganimation.proxy.Student.class.getClassLoader(), new Class[]{studentInfo.class}, new StudentHandler());
-        studentInfo.smoke();
-        try {
-            //反射 设置变量的值
-            Class<?> aClass = Class.forName("com.yiguo.recordinganimation.dagger.Student");
-            Object newInstance = aClass.newInstance();
-            Method showMethod = aClass.getDeclaredMethod("show", String.class);
-            showMethod.setAccessible(true);
-            showMethod.invoke(newInstance, "马大哈");
+    /*
+     * 将时间转换为时间戳
+     */
+    public static String dateToStamp(String s) {
+        String res = null;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
-            Field name = aClass.getDeclaredField("name");
-            name.set(newInstance, "Thinkive");
-            Student student = (Student) newInstance;
-            System.out.print("发射变量赋值:" + student.name);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        try {
+            Date date = simpleDateFormat.parse(s);
+            long ts = date.getTime();
+            res = String.valueOf(ts);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        return res;
     }
+
+    public static void main(String[] s) {
+
+
+
+//        String dateToStamp = dateToStamp("2019/01/12");
+//        System.out.println("1.getDateToStamp" + dateToStamp);
+//         class VauleCallBack implements Future {
+//
+//            @Override
+//            public boolean cancel(boolean mayInterruptIfRunning) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean isCancelled() {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean isDone() {
+//                return false;
+//            }
+//
+//            @Override
+//            public Object get() throws ExecutionException, InterruptedException {
+//                Thread.sleep(3000);
+//                return "完成";
+//            }
+//
+//            @Override
+//            public Object get(long timeout, @NonNull TimeUnit unit) throws ExecutionException, InterruptedException, TimeoutException {
+//                Thread.sleep(5000);
+//                return null;
+//            }
+//        }
+//
+//
+//        ExecutorService threadPool = Executors.newFixedThreadPool(1);
+//        Callable<String> call = new Callable<String>() {
+//            @Override
+//            public String call() throws Exception {
+//                //开始执行耗时操作
+//                Thread.sleep(1000 * 3);
+//                return "执行完成!";
+//            }
+//        };
+//        System.out.println("1准备执行");
+//        Future<String> future = threadPool.submit(call);
+//        try {
+//            String s1 = future.get(2, TimeUnit.SECONDS);
+//            System.out.println("2.执行结果"+s1);
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (TimeoutException e) {
+//            e.printStackTrace();
+//            System.out.println("2.1执行"+e.getMessage());
+//        }
+//        System.out.println("3.end");
+//        class demoGet {
+//            private String token;
+//
+//            public String getToken() throws ExecutionException, InterruptedException, TimeoutException {
+//                //需要等待token的返回,需要阻塞等待
+//                Callable<String> callable = new Callable<String>() {
+//                    @Override
+//                    public String call() throws Exception {
+//                        Thread.sleep(3000);//异步请求token
+//                        token = "123";
+//                        System.out.println("1.get" + token);
+//                        return token;
+//                    }
+//                };
+//                ExecutorService threadPool = Executors.newFixedThreadPool(1);
+//                FutureTask task = new FutureTask<String>(callable);
+//                threadPool.submit(task);
+//                threadPool.execute(task);
+//                String token;
+//                token = (String) task.get(2, TimeUnit.SECONDS);//设置超时2秒
+//                System.out.println("2.return" + token);
+//                return token;
+//
+//            }
+//        }
+//
+//        demoGet demoGet = new demoGet();
+//        String token = null;
+//        try {
+//            token = demoGet.getToken();
+//            System.out.println("3.end" + token);
+//            if (token == null) {
+//                System.out.println("3.timeOut,重新请求token");
+//            }
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (TimeoutException e) {
+//            // throw new RuntimeException("请求token超时");
+//            System.out.println(e.getMessage());
+//        }
+//        System.out.println("4.end" + token);
+
+
+//        studentInfo studentInfo = (studentInfo) Proxy.newProxyInstance(com.yiguo.recordinganimation.proxy.Student.class.getClassLoader(), new Class[]{studentInfo.class}, new StudentHandler());
+//        studentInfo.smoke();
+//        try {
+//            //反射 设置变量的值
+//            Class<?> aClass = Class.forName("com.yiguo.recordinganimation.dagger.Student");
+//            Object newInstance = aClass.newInstance();
+//            Method showMethod = aClass.getDeclaredMethod("show", String.class);
+//            showMethod.setAccessible(true);
+//            showMethod.invoke(newInstance, "马大哈");
+//
+//            Field name = aClass.getDeclaredField("name");
+//            name.set(newInstance, "Thinkive");
+//            Student student = (Student) newInstance;
+//            System.out.print("发射变量赋值:" + student.name);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button26).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LeakeActivity.class));
+              //  startActivity(new Intent(MainActivity.this, LeakeActivity.class));
 
             }
         });

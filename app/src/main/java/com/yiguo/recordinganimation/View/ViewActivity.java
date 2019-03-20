@@ -69,4 +69,9 @@ public class ViewActivity extends AppCompatActivity {
         });
 
     }
+
+    public void RoundView(View view) {
+        startActivity(new Intent(ViewActivity.this, RoundViewActivity.class));
+
+    }
 }

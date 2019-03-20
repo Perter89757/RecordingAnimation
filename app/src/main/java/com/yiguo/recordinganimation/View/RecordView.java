@@ -159,7 +159,7 @@ public class RecordView extends View {
         setMeasuredDimension(measure(widthMeasureSpec), measure(heightMeasureSpec));
     }
     private int measure(int origin) {
-        int result = DEFAULT_MIN_WIDTH;
+        int result = DEFAULT_MIN_WIDTH;//默认宽度
         int specMode = MeasureSpec.getMode(origin);
         int specSize = MeasureSpec.getSize(origin);
         if (specMode == MeasureSpec.EXACTLY) {
@@ -171,6 +171,7 @@ public class RecordView extends View {
         }
         return result;
     }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

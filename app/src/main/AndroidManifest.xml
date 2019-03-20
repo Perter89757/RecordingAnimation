@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yiguo.recordinganimation">
 
+    <uses-sdk tools:overrideLibrary="com.i2trust.sdk" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -10,24 +12,24 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    //TODD兼容Android9.0权限
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
 
     <application
         android:name=".ThinkiveApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="theme">
+         tools:replace="theme">
+        <activity android:name=".View.RoundViewActivity"/>
         <activity android:name=".MainActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
 
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Temp.TimeOutActivity" />
         <activity android:name=".Temp.EmojiActivity" />
@@ -77,7 +79,6 @@
         <activity android:name=".View.Circle2Activity" />
         <activity android:name=".View.Se4CodeActivity" />
         <activity android:name=".View.RaderActivity" />
-        <activity android:name=".ActivityKiller.AppKillerActivity" />
         <activity android:name=".UI.AutoLayoutActivity" />
         <activity android:name=".eventBus.EventBusActivity" />
         <activity android:name=".eventBus.EventBusCActivity" />
@@ -104,14 +105,9 @@
         <service
             android:name=".KeepLive.service.JobHandlerService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".KeepLive.service.LocalService"/>
+        <service android:name=".KeepLive.service.LocalService" />
 
         <activity android:name=".KeepLive.KeepLiveAppActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

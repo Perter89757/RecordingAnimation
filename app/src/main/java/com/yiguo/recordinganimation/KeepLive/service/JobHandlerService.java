@@ -35,13 +35,14 @@ public final class JobHandlerService extends JobService {
             mJobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
             JobInfo.Builder builder = new JobInfo.Builder(startId++,
                     new ComponentName(getPackageName(), JobHandlerService.class.getName()));
-            if (Build.VERSION.SDK_INT >= 24) {
-                builder.setMinimumLatency(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS); //执行的最小延迟时间
-                builder.setOverrideDeadline(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS);  //执行的最长延时时间
-                builder.setMinimumLatency(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS);
+            if (Build.VERSION.SDK_INT >= 24) {//适配Android7.0
+                builder.setMinimumLatency(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS); //执行的最小延迟时间 30s
+                builder.setOverrideDeadline(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS);  //执行的最长延时时间 30s
+                builder.setMinimumLatency(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS);//最小间隔时间 30s
                 builder.setBackoffCriteria(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS, JobInfo.BACKOFF_POLICY_LINEAR);//线性重试方案
             } else {
-                builder.setPeriodic(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS);//设置时间间隔 该方法不能和setMinimumLatency、setOverrideDeadline这两个同时调用
+                //该方法不能和setMinimumLatency、setOverrideDeadline这两个同时调用
+                builder.setPeriodic(JobInfo.DEFAULT_INITIAL_BACKOFF_MILLIS);//设置时间间隔
             }
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);//有网络时执行
             builder.setRequiresCharging(true); // 当插入充电器，执行该任务
@@ -52,12 +53,12 @@ public final class JobHandlerService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
-
         Log.d("keepLive","onStartJob_开始执行 ");
+        //如果守护进程没启动,再次重启
         if ( !isServiceRunning(getApplicationContext(), getPackageName()+":remote")) {
             startService(new Intent(this, LocalService.class));
             startService(new Intent(this, RemoteService.class));
-            Log.d("keepLive","onStartJob_检测到远程停止_重启 ");
+            Log.d("keepLive","onStartJob_检测到远程Service停止_重启 ");
         }
         return false;
     }
@@ -68,7 +69,7 @@ public final class JobHandlerService extends JobService {
         if (!isServiceRunning(getApplicationContext(), getPackageName()+":remote")) {
             startService(new Intent(this, LocalService.class));
             startService(new Intent(this, RemoteService.class));
-            Log.d("keepLive","onStopJob_检测到远程停止_重启");
+            Log.d("keepLive","onStopJob_检测到远程Service停止_重启");
         }
         return false;
     }

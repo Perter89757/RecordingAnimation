@@ -22,7 +22,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * onDestroy
+ * 远程服务
  */
 @SuppressWarnings(value = {"unchecked", "deprecation"})
 public final class RemoteService extends Service {
@@ -121,9 +121,8 @@ public final class RemoteService extends Service {
     private final ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.d("keepLive", "----PushRemoteService-onServiceDisconnected_重新启动远程和本地");
-            Intent remoteService = new Intent(RemoteService.this,
-                    LocalService.class);
+            Log.d("keepLive", "----RemoteService-onServiceDisconnected");
+            Intent remoteService = new Intent(RemoteService.this, LocalService.class);
             RemoteService.this.startService(remoteService);
             RemoteService.this.bindService(new Intent(RemoteService.this, LocalService.class), connection, Context.BIND_ABOVE_CLIENT);
             PowerManager pm = (PowerManager) RemoteService.this.getSystemService(Context.POWER_SERVICE);

@@ -13,7 +13,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
 
+    }
     signingConfigs {
         release {
             try {
@@ -42,7 +46,11 @@ android {
         }
     }
 }
-
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':service_aidl')
