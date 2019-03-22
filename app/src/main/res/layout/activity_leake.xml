@@ -11,25 +11,8 @@
         android:text="显示:"
         android:layout_width="wrap_content"
         android:layout_height="20dp" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:onClick="A"
-        android:text="A"
-        app:layout_constraintEnd_toStartOf="@+id/button13"
-        app:layout_constraintTop_toBottomOf="@+id/content" />
-
-    <Button
-        android:id="@+id/button13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:onClick="B"
-        android:text="B"
-        app:layout_constraintTop_toTopOf="@+id/button4"
-        tools:layout_editor_absoluteX="133dp" />
+    <ImageView
+        android:src="@drawable/bj"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

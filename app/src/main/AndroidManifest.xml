@@ -97,18 +97,18 @@
 
         <receiver android:name=".KeepLive.receiver.NotificationClickReceiver" />
 
-        <activity android:name=".KeepLive.activity.OnePixelActivity" />
+        <!--<activity android:name=".KeepLive.activity.OnePixelActivity" />-->
 
-        <service
-            android:name=".KeepLive.service.RemoteService"
-            android:process=":remote" />
-        <service
-            android:name=".KeepLive.service.JobHandlerService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".KeepLive.service.LocalService" />
+        <!--<service-->
+            <!--android:name=".KeepLive.service.RemoteService"-->
+            <!--android:process=":remote" />-->
+        <!--<service-->
+            <!--android:name=".KeepLive.service.JobHandlerService"-->
+            <!--android:permission="android.permission.BIND_JOB_SERVICE" />-->
+        <!--<service android:name=".KeepLive.service.LocalService" />-->
 
-        <activity android:name=".KeepLive.KeepLiveAppActivity">
-        </activity>
+        <!--<activity android:name=".KeepLive.KeepLiveAppActivity"/>-->
+        <activity android:name=".View.RecordAudioViewActivity"/>
     </application>
 
 </manifest>

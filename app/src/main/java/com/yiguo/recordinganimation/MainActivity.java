@@ -1,10 +1,14 @@
 package com.yiguo.recordinganimation;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
@@ -26,6 +30,7 @@ import com.yiguo.recordinganimation.callback.CallBackActivity;
 import com.yiguo.recordinganimation.dagger.DaggerActivity;
 import com.yiguo.recordinganimation.eventBus.EventBusActivity;
 import com.yiguo.recordinganimation.eventBus.MessageEvent;
+import com.yiguo.recordinganimation.memoryLeake.LeakeActivity;
 import com.yiguo.recordinganimation.mqtt.MQTTActivity;
 import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
 
@@ -190,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        } catch (InvocationTargetException e) {
 //            e.printStackTrace();
-//        }
+//        }button26
     }
 
 
@@ -198,10 +203,16 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+        }
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 3);
+        }
         findViewById(R.id.button26).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  startActivity(new Intent(MainActivity.this, LeakeActivity.class));
+                 startActivity(new Intent(MainActivity.this, LeakeActivity.class));
 
             }
         });
