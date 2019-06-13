@@ -1,5 +1,6 @@
 package com.yiguo.recordinganimation.View;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -17,6 +18,7 @@ import android.view.View;
 
 import com.yiguo.recordinganimation.R;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,19 +52,19 @@ public class RecordView extends View {
     private float translateX = 0;
     /**
      * 圆环颜色
-     * */
-    private int[] doughnutColors = new int[]{0xFFDAF6FE,0xFF45C3E5,0xFF45C3E5,0xFF45C3E5,0xFF45C3E5};
+     */
+    private int[] doughnutColors = new int[]{0xFFDAF6FE, 0xFF45C3E5, 0xFF45C3E5, 0xFF45C3E5, 0xFF45C3E5};
     /**
      * 默认是录制模式
-     * */
+     */
     private int model = MODEL_RECORD;
     /**
      * 计时器提示时间
-     * */
+     */
     private String hintText = "";
     /**
      * 进度条终点图片
-     * */
+     */
     private Drawable progressDrawable;
     /**
      * 振幅
@@ -84,25 +86,61 @@ public class RecordView extends View {
 
     private TimerTask timeTask;
     private TimerTask progressTask;
-    Handler mHandler = new Handler(){
+   // private NoLeakHandler mHandler;
+
+//    class NoLeakHandler extends Handler {
+//        private WeakReference<Activity> activityWeak;
+//
+//        public NoLeakHandler(Activity activity) {
+//            activityWeak = new WeakReference<>(activity);
+//        }
+//
+//        @Override
+//        public void handleMessage(Message msg) {
+//            Activity activity = activityWeak.get();
+//            if (activity == null) {
+//                return;
+//            }
+//            if (msg.what == 1) {
+//                countdownTime2--;
+//                if (countdownTime2 == 0) {
+//                    listener.onCountDown();
+//                    canSetVolume = false;
+//                    timeTask.cancel();
+//                    postInvalidate();
+//                }
+//            } else if (msg.what == 2) {
+//                progress += 360.00 / (countdownTime * 950.00 / 5.00);
+////                Log.d(TAG,"progress:"+progress);
+//                if (progress > 360) {
+//                    targetVolume = 1;
+//                    postInvalidate();
+//                    progressTask.cancel();
+//                } else
+//                    postInvalidate();
+//            }
+//        }
+//    }
+
+        Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if(msg.what == 1){
+            if (msg.what == 1) {
                 countdownTime2--;
-                if(countdownTime2 == 0){
+                if (countdownTime2 == 0) {
                     listener.onCountDown();
                     canSetVolume = false;
                     timeTask.cancel();
                     postInvalidate();
                 }
-            }else if(msg.what == 2){
-                progress += 360.00/(countdownTime*950.00/5.00);
+            } else if (msg.what == 2) {
+                progress += 360.00 / (countdownTime * 950.00 / 5.00);
 //                Log.d(TAG,"progress:"+progress);
-                if(progress >360){
+                if (progress > 360) {
                     targetVolume = 1;
                     postInvalidate();
                     progressTask.cancel();
-                }else
+                } else
                     postInvalidate();
             }
         }
@@ -118,7 +156,7 @@ public class RecordView extends View {
     private String playHintText;
 
     public RecordView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public RecordView(Context context, AttributeSet attrs) {
@@ -129,14 +167,14 @@ public class RecordView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);//消除锯齿
         mPaint.setStyle(Paint.Style.STROKE);
-    }
+     }
 
-    private void initAtts(){
-        model = typedArray.getInt(R.styleable.recordView_model,MODEL_RECORD);
+    private void initAtts() {
+        model = typedArray.getInt(R.styleable.recordView_model, MODEL_RECORD);
         hintText = typedArray.getString(R.styleable.recordView_hintText);
-        progressDrawable = typedArray.getDrawable(R.styleable.recordView_progressSrc) == null?
-                getResources().getDrawable(R.mipmap.light_blue):typedArray.getDrawable(R.styleable.recordView_progressSrc);
-        textHintSize = typedArray.getDimension(R.styleable.recordView_hintTextSize,15);
+        progressDrawable = typedArray.getDrawable(R.styleable.recordView_progressSrc) == null ?
+                getResources().getDrawable(R.mipmap.light_blue) : typedArray.getDrawable(R.styleable.recordView_progressSrc);
+        textHintSize = typedArray.getDimension(R.styleable.recordView_hintTextSize, 15);
         middleLineColor = typedArray.getColor(R.styleable.recordView_middleLineColor, getResources().getColor(R.color.RoundFillColor));
         voiceLineColor = typedArray.getColor(R.styleable.recordView_middleLineColor, getResources().getColor(R.color.RoundFillColor));
         middleLineHeight = typedArray.getDimension(R.styleable.recordView_middleLineHeight, 2);
@@ -144,10 +182,11 @@ public class RecordView extends View {
         unit = typedArray.getString(R.styleable.recordView_unit);
         playHintText = typedArray.getString(R.styleable.recordView_playHintText);
         paths = new ArrayList<>(20);
-        for (int i = 0; i <20; i++) {
+        for (int i = 0; i < 20; i++) {
             paths.add(new Path());
         }
     }
+
     /**
      * 当布局为wrap_content时设置默认长宽
      *
@@ -158,6 +197,7 @@ public class RecordView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(measure(widthMeasureSpec), measure(heightMeasureSpec));
     }
+
     private int measure(int origin) {
         int result = DEFAULT_MIN_WIDTH;//默认宽度
         int specMode = MeasureSpec.getMode(origin);
@@ -175,29 +215,30 @@ public class RecordView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(model == MODEL_RECORD){
+        if (model == MODEL_RECORD) {
             drawDefaultView(canvas);
             drawVoiceLine(canvas);
-        }else{
+        } else {
             drawDefaultForPlay(canvas);
             drawVoiceLine2(canvas);
         }
         //这边开启画进度条
-        if(canDrawProgress){
+        if (canDrawProgress) {
             drawProgress(canvas);
         }
     }
-    private void drawDefaultForPlay(Canvas canvas){
+
+    private void drawDefaultForPlay(Canvas canvas) {
         /**
-        * 先画一个大圆
-        */
+         * 先画一个大圆
+         */
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(dip2px(mContext, widthing));
         mPaint.setColor(mContext.getResources().getColor(R.color.RoundColor));
-        RectF oval = new RectF( dip2px(mContext, pandding)
+        RectF oval = new RectF(dip2px(mContext, pandding)
                 , dip2px(mContext, pandding)
-                , getWidth()-dip2px(mContext, pandding)
-                , getHeight()-dip2px(mContext, pandding));
+                , getWidth() - dip2px(mContext, pandding)
+                , getHeight() - dip2px(mContext, pandding));
         canvas.drawArc(oval, 0, 360, false, mPaint);    //绘制圆弧
 
         /**
@@ -209,68 +250,75 @@ public class RecordView extends View {
          * 画时间
          * */
         Paint paint2 = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint2.setTextSize(dip2px(mContext,14));
+        paint2.setTextSize(dip2px(mContext, 14));
         paint2.setColor(mContext.getResources().getColor(R.color.RoundFillColor));
         paint2.setTextAlign(Paint.Align.CENTER);
-        if(playHintText == null){
+        if (playHintText == null) {
             playHintText = "正在播放录音.";
         }
-        canvas.drawText(playHintText, getWidth()/2, getHeight()*1/3, paint2);
+        canvas.drawText(playHintText, getWidth() / 2, getHeight() * 1 / 3, paint2);
     }
-    private void drawDefaultView(Canvas canvas){
+
+    private void drawDefaultView(Canvas canvas) {
         /**
          * 画提示的文字
          * */
-        if(hintText!=null&&!hintText.equals("")){
+        if (hintText != null && !hintText.equals("")) {
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            paint.setTextSize(dip2px(mContext,textHintSize));
+            paint.setTextSize(dip2px(mContext, textHintSize));
             paint.setColor(mContext.getResources().getColor(R.color.RoundHintTextColor));
             // 下面这行是实现水平居中，drawText对应改为传入targetRect.centerX()
             paint.setTextAlign(Paint.Align.CENTER);
-            canvas.drawText(hintText, getWidth()/2, getHeight()/2+50, paint);
-        }else{
+            canvas.drawText(hintText, getWidth() / 2, getHeight() / 2 + 50, paint);
+        } else {
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            paint.setTextSize(dip2px(mContext,textHintSize));
+            paint.setTextSize(dip2px(mContext, textHintSize));
             paint.setColor(mContext.getResources().getColor(R.color.RoundHintTextColor));
             // 下面这行是实现水平居中，drawText对应改为传入targetRect.centerX()
             paint.setTextAlign(Paint.Align.CENTER);
-            canvas.drawText("剩余录制时间", getWidth()/2, getHeight()/2+50, paint);
+            canvas.drawText("剩余录制时间", getWidth() / 2, getHeight() / 2 + 50, paint);
         }
 
         /**
          * 画时间
          * */
         Paint paint2 = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint2.setTextSize(dip2px(mContext,60));
+        paint2.setTextSize(dip2px(mContext, 60));
         paint2.setColor(mContext.getResources().getColor(R.color.TimeTextColor));
         paint2.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText(countdownTime2+"", getWidth()/2, getHeight()/2-20, paint2);
+        canvas.drawText(countdownTime2 + "", getWidth() / 2, getHeight() / 2 - 20, paint2);
 
         /**
          * 画单位，默认s
          * */
         Paint paint1 = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint1.setTextSize(dip2px(mContext,40));
+        paint1.setTextSize(dip2px(mContext, 40));
         paint1.setColor(mContext.getResources().getColor(R.color.TimeTextColor));
         paint1.setTextAlign(Paint.Align.CENTER);
-        float timeWidth = getWidth()/2f+paint2.measureText(countdownTime2+"")*2/3;
-        canvas.drawText(unit == null ?"s":unit,timeWidth, getHeight()/2-20, paint1);
+        float timeWidth = getWidth() / 2f + paint2.measureText(countdownTime2 + "") * 2 / 3;
+        canvas.drawText(unit == null ? "s" : unit, timeWidth, getHeight() / 2 - 20, paint1);
         /**
          * 画一个大圆(纯色)
          */
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(dip2px(mContext, widthing));
         mPaint.setColor(mContext.getResources().getColor(R.color.RoundColor));
-        RectF oval1 = new RectF( dip2px(mContext, pandding)
+        RectF oval1 = new RectF(dip2px(mContext, pandding)
                 , dip2px(mContext, pandding)
-                , getWidth()-dip2px(mContext, pandding)
-                , getHeight()-dip2px(mContext, pandding));
+                , getWidth() - dip2px(mContext, pandding)
+                , getHeight() - dip2px(mContext, pandding));
         canvas.drawArc(oval1, progress, 360, false, mPaint);    //绘制圆弧
     }
-    public void setModel(int model){
+
+    public void setModel(int model) {
         this.model = model;
         postInvalidate();
     }
+
+    public int getModel() {
+        return model;
+    }
+
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
@@ -278,23 +326,24 @@ public class RecordView extends View {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
+
     /**
      * 绘制圆弧
-     * */
-    private void drawProgress(Canvas canvas){
+     */
+    private void drawProgress(Canvas canvas) {
 
         /**
          * 这边画进度
          */
-        if(progress > 90){
+        if (progress > 90) {
             mPaint.setColor(getResources().getColor(R.color.RoundFillColor));
             mPaint.setStrokeWidth(dip2px(mContext, widthing));
-            RectF oval = new RectF( dip2px(mContext, pandding)
+            RectF oval = new RectF(dip2px(mContext, pandding)
                     , dip2px(mContext, pandding)
-                    , getWidth()-dip2px(mContext, pandding)
-                    , getHeight()-dip2px(mContext, pandding));
-            canvas.drawArc(oval, 0, progress-90, false, mPaint);    //绘制圆弧
-            r = getHeight()/2f-dip2px(mContext,pandding);
+                    , getWidth() - dip2px(mContext, pandding)
+                    , getHeight() - dip2px(mContext, pandding));
+            canvas.drawArc(oval, 0, progress - 90, false, mPaint);    //绘制圆弧
+            r = getHeight() / 2f - dip2px(mContext, pandding);
         }
         /**
          * 画一个大圆(渐变)
@@ -303,55 +352,57 @@ public class RecordView extends View {
         canvas.rotate(-90, getWidth() / 2, getHeight() / 2);
         mPaint.setStrokeWidth(dip2px(mContext, widthing));
         mPaint.setShader(new SweepGradient(getWidth() / 2, getHeight() / 2, doughnutColors, null));
-        RectF oval = new RectF( dip2px(mContext, pandding)
+        RectF oval = new RectF(dip2px(mContext, pandding)
                 , dip2px(mContext, pandding)
-                , getWidth()-dip2px(mContext, pandding)
-                , getHeight()-dip2px(mContext, pandding));
+                , getWidth() - dip2px(mContext, pandding)
+                , getHeight() - dip2px(mContext, pandding));
         //看这里，其实这里当progress大于90以后就一直只画0-90度的圆环
-        canvas.drawArc(oval, 0, progress<90?progress:90, false, mPaint);    //绘制圆弧
+        canvas.drawArc(oval, 0, progress < 90 ? progress : 90, false, mPaint);    //绘制圆弧
         canvas.rotate(90, getWidth() / 2, getHeight() / 2);
         mPaint.reset();
 
         drawImageDot(canvas);
     }
-    private void drawImageDot(Canvas canvas){
+
+    private void drawImageDot(Canvas canvas) {
         /**
          * 画一个点（图片）
          * */
-        if(r>0){
-            if(progress >360)
+        if (r > 0) {
+            if (progress > 360)
                 return;
-            double hu = Math.PI*Double.parseDouble(String.valueOf(progress))/180.0;
-            Log.d(TAG,"hu: "+hu);
-            double p = Math.sin(hu)*r;
-            Log.d(TAG,"p: "+p);
-            double q = Math.cos(hu)*r;
-            Log.d(TAG,"q: "+q);
-            float x = (float) ((getWidth()-progressDrawable.getIntrinsicWidth())/2f+p);
-            Log.d(TAG,"x: "+x);
-            float y = (float) ((dip2px(mContext,pandding)-progressDrawable.getIntrinsicHeight()/2f)+r-q);
-            Log.d(TAG,"y: "+y);
-            canvas.drawBitmap(((BitmapDrawable)progressDrawable).getBitmap(),x,y,mPaint);
+            double hu = Math.PI * Double.parseDouble(String.valueOf(progress)) / 180.0;
+            Log.d(TAG, "hu: " + hu);
+            double p = Math.sin(hu) * r;
+            Log.d(TAG, "p: " + p);
+            double q = Math.cos(hu) * r;
+            Log.d(TAG, "q: " + q);
+            float x = (float) ((getWidth() - progressDrawable.getIntrinsicWidth()) / 2f + p);
+            Log.d(TAG, "x: " + x);
+            float y = (float) ((dip2px(mContext, pandding) - progressDrawable.getIntrinsicHeight() / 2f) + r - q);
+            Log.d(TAG, "y: " + y);
+            canvas.drawBitmap(((BitmapDrawable) progressDrawable).getBitmap(), x, y, mPaint);
         }
     }
+
     /**
      * 画声纹(录制)
-     * */
+     */
     private void drawVoiceLine(Canvas canvas) {
         lineChange();
         mPaint.setColor(voiceLineColor);
         mPaint.setAntiAlias(true);
         mPaint.setStrokeWidth(2);
         canvas.save();
-        int moveY = getHeight()*3/4;
+        int moveY = getHeight() * 3 / 4;
         for (int i = 0; i < paths.size(); i++) {
             paths.get(i).reset();
-            paths.get(i).moveTo(getWidth()*5/6, getHeight() *3/4);
+            paths.get(i).moveTo(getWidth() * 5 / 6, getHeight() * 3 / 4);
         }
-        for (float j = getWidth()*5/6 - 1; j >= getWidth()/6; j -= fineness) {
-            float i = j-getWidth()/6;
+        for (float j = getWidth() * 5 / 6 - 1; j >= getWidth() / 6; j -= fineness) {
+            float i = j - getWidth() / 6;
             //这边必须保证起始点和终点的时候amplitude = 0;
-            amplitude = 5 * volume *i / getWidth() - 5 * volume * i / getWidth() * i/getWidth()*6/4;
+            amplitude = 5 * volume * i / getWidth() - 5 * volume * i / getWidth() * i / getWidth() * 6 / 4;
             for (int n = 1; n <= paths.size(); n++) {
                 float sin = amplitude * (float) Math.sin((i - Math.pow(1.22, n)) * Math.PI / 180 - translateX);
                 paths.get(n - 1).lineTo(j, (2 * n * sin / paths.size() - 15 * sin / paths.size() + moveY));
@@ -369,9 +420,10 @@ public class RecordView extends View {
         }
         canvas.restore();
     }
+
     /**
      * 画声纹（播放）
-     * */
+     */
     private void drawVoiceLine2(Canvas canvas) {
         lineChange();
         mPaint.setColor(voiceLineColor);
@@ -380,15 +432,15 @@ public class RecordView extends View {
         mPaint.setStrokeWidth(2);
         canvas.save();
         int moveY = getHeight() / 2;
-        int pandY = getWidth()/12;
+        int pandY = getWidth() / 12;
         for (int i = 0; i < paths.size(); i++) {
             paths.get(i).reset();
-            paths.get(i).moveTo(getWidth()-pandY, getHeight() / 2);
+            paths.get(i).moveTo(getWidth() - pandY, getHeight() / 2);
         }
-        for (float j = getWidth()*11/12 - 1; j >= getWidth()/12; j -= fineness) {
-            float i = j-getWidth()/12;
+        for (float j = getWidth() * 11 / 12 - 1; j >= getWidth() / 12; j -= fineness) {
+            float i = j - getWidth() / 12;
             //这边必须保证起始点和终点的时候amplitude = 0;
-            amplitude = 4 * volume *i / getWidth() - 4 * volume * i / getWidth() * i/getWidth()*12/10;
+            amplitude = 4 * volume * i / getWidth() - 4 * volume * i / getWidth() * i / getWidth() * 12 / 10;
             for (int n = 1; n <= paths.size(); n++) {
                 float sin = amplitude * (float) Math.sin((i - Math.pow(1.22, n)) * Math.PI / 180 - translateX);
                 paths.get(n - 1).lineTo(j, (2 * n * sin / paths.size() - 15 * sin / paths.size() + moveY));
@@ -407,28 +459,29 @@ public class RecordView extends View {
         canvas.restore();
     }
 
-    public void start(){
-            //重置计时器显示的时间
-            canSetVolume = true;
-            canDrawProgress = true;
-            progress = 0;
-            countdownTime2 = countdownTime;
-            //启动定时器
-            timeTimer.schedule(timeTask = new TimerTask() {
-                public void run() {
-                    Message msg = new Message();
-                    msg.what = 1;
-                    mHandler.sendMessage(msg);
-                }
-            }, 1000, 1000);
-            progressTimer.schedule(progressTask = new TimerTask() {
-                public void run() {
-                    Message msg = new Message();
-                    msg.what = 2;
-                    mHandler.sendMessage(msg);
-                }
-            },0,5);
+    public void start() {
+        //重置计时器显示的时间
+        canSetVolume = true;
+        canDrawProgress = true;
+        progress = 0;
+        countdownTime2 = countdownTime;
+        //启动定时器
+        timeTimer.schedule(timeTask = new TimerTask() {
+            public void run() {
+                Message msg = new Message();
+                msg.what = 1;
+                mHandler.sendMessage(msg);
+            }
+        }, 1000, 1000);
+        progressTimer.schedule(progressTask = new TimerTask() {
+            public void run() {
+                Message msg = new Message();
+                msg.what = 2;
+                mHandler.sendMessage(msg);
+            }
+        }, 0, 5);
     }
+
     private void lineChange() {
         if (lastTime == 0) {
             lastTime = System.currentTimeMillis();
@@ -456,22 +509,25 @@ public class RecordView extends View {
             }
         }
     }
+
     public void setVolume(int volume) {
-        if(volume >100)
-            volume = volume/100;
-        volume = volume*2/5;
-        if(!canSetVolume)
+        if (volume > 100)
+            volume = volume / 100;
+        volume = volume * 2 / 5;
+        if (!canSetVolume)
             return;
         if (volume > maxVolume * sensibility / 30) {
             isSet = true;
             this.targetVolume = getHeight() * volume / 3 / maxVolume;
-            Log.d(TAG,"targetVolume: "+targetVolume);
+            Log.d(TAG, "targetVolume: " + targetVolume);
         }
     }
-    interface OnCountDownListener{
+
+    interface OnCountDownListener {
         void onCountDown();
     }
-    public void setOnCountDownListener(OnCountDownListener listener){
+
+    public void setOnCountDownListener(OnCountDownListener listener) {
         this.listener = listener;
     }
 
@@ -480,7 +536,8 @@ public class RecordView extends View {
         this.countdownTime2 = countdownTime;
         postInvalidate();
     }
-    public void cancel(){
+
+    public void cancel() {
         listener.onCountDown();
         canSetVolume = false;
         timeTask.cancel();

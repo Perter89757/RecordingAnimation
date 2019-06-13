@@ -62,9 +62,10 @@ dependencies {
 
     compile 'com.dsiner.lib:slidelayout:1.0.2'
 
-    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:appcompat-v7:26.0.0'
     compile "com.android.support:recyclerview-v7:23.0.1"
     compile "com.android.support:cardview-v7:23.0.1"
+
 
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
@@ -85,5 +86,9 @@ dependencies {
     }
     //banner
     compile 'com.youth.banner:banner:1.4.10'
-
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    compile 'com.github.MZCretin:ExpandableTextView:v1.5.3'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 }

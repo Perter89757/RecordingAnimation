@@ -10,6 +10,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.URLSpan;
 import android.widget.TextView;
 
+import com.ctetin.expandabletextviewlibrary.ExpandableTextView;
 import com.yiguo.recordinganimation.R;
 
 import java.util.regex.Matcher;
@@ -19,6 +20,7 @@ public class SpanTextViewActivity extends AppCompatActivity {
 
     private TextView tvSpanView;
     private TextView tvSpanView2;
+    private ExpandableTextView expandableTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +28,21 @@ public class SpanTextViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_span_text_view);
         tvSpanView = (TextView) findViewById(R.id.tvSpan);
         tvSpanView2 = (TextView) findViewById(R.id.tvSpan2);
+        expandableTextView = (ExpandableTextView) findViewById(R.id.ep_01);
 
         showcolorchar();
 
         testColoredKeywd();
 
-
-
+        String originalText = "我是思迪客服，很高兴能为您提供咨询服务，有问题可以直接问我哟！<br/><a href=\"id=04cea30c74b846ada4de34b85d8a9478,sourceType=1,title=1.什么情况下，交易所会提高交易保证金？\">1.什么情况下，交易所会提高交易保证金？</a><br/><a href=\"id=175e105abf024e25ad695f605926c67b,sourceType=1,title=2.开户信息\">2.开户信息</a><br/><a href=\"id=21af3a69e9f84c22bb43a33dd04f5773,sourceType=1,title=3.目前国际上原油现货和期货交易主要集中在哪些国家和地区？\">3.目前国际上原油现货和期货交易主要集中在哪些国家和地区？</a><br/> \n" +
+                "<br/>--------------------------------<br/>您也可以点击 <a href=\"id=11001,sourceType=human,title=转人工客服\"}\">转人工客服</a>";
+        //转化之前的文字
+         Spanned spanned;
+        //提取其中的超链接
+          spanned = Html.fromHtml(originalText);
+         //转化之后的文字
+        String afterTransfer = spanned.toString();
+        expandableTextView.setContent(afterTransfer);
     }
 
     /**

@@ -37,11 +37,7 @@ public class StickyLayoutAdapter extends DelegateAdapter.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        RecyclerViewItemHolder recyclerViewHolder = (RecyclerViewItemHolder) holder;
-//        ViewGroup.LayoutParams layoutParams =recyclerViewHolder.tv_name.getLayoutParams();
-//        layoutParams.height = 260 + position % 7 * 20;
-//        recyclerViewHolder.tv_name.setLayoutParams(layoutParams);
-//        recyclerViewHolder.iv_icon.setBackgroundResource();
+
 
     }
 

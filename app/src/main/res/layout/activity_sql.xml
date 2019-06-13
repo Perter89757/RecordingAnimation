@@ -25,13 +25,13 @@
         android:id="@+id/insert"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="插入数据"
+        android:text="增加新数据"
         />
     <Button
-        android:id="@+id/update"
+        android:id="@+id/modify"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="更新数据"
+        android:text="修改数据"
         />
     <Button
         android:id="@+id/query"

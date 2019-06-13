@@ -14,18 +14,12 @@ import java.util.ArrayList;
 
 public class LeakeActivity extends AppCompatActivity {
     private Handler mLeakHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leake);
-        //发送延时消息
-        mLeakHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
 
-            }
-        }, 1000 *60 *10);
-        finish();
     }
 
 

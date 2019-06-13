@@ -1,6 +1,7 @@
 package com.yiguo.recordinganimation.View;
 
 import android.content.Intent;
+import android.net.SSLCertificateSocketFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +9,13 @@ import android.widget.Button;
 
 import com.yiguo.recordinganimation.R;
 import com.yiguo.recordinganimation.View.TouchEvent.TouchEventActivity;
+
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.OkHttpClient;
 
 public class ViewActivity extends AppCompatActivity {
 

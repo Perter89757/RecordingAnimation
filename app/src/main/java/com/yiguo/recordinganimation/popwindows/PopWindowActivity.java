@@ -24,15 +24,11 @@ public class PopWindowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_window);
         button = (Button) findViewById(R.id.more);
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View button) {
                 // window(button);
                 initView(button);
-
-
             }
         });
     }
@@ -89,15 +85,5 @@ public class PopWindowActivity extends AppCompatActivity {
         int measuredHeight = popupWindow.getContentView().getMeasuredHeight();
         popupWindow.showAsDropDown(targetView, 0, -(targetView.getHeight() + measuredHeight));
     }
-
-
-
-
-
 }
 
-class ToggleSwitch extends Switch {
-    public ToggleSwitch(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-}

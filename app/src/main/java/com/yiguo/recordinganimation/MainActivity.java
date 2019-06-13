@@ -6,27 +6,25 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.yiguo.recordinganimation.Fragment.DemoFragmentActivity;
 import com.yiguo.recordinganimation.GlideLoad.GlideActivity;
-import com.yiguo.recordinganimation.KeepLive.KeepLiveActivity;
-import com.yiguo.recordinganimation.SQL.SQLActivity;
-import com.yiguo.recordinganimation.Service.ServiceActivity;
+ import com.yiguo.recordinganimation.SQL.SQLActivity;
 import com.yiguo.recordinganimation.Temp.EmojiActivity;
-import com.yiguo.recordinganimation.Temp.OnepxReceiver;
-import com.yiguo.recordinganimation.Temp.TimeOutActivity;
 import com.yiguo.recordinganimation.UI.AutoLayoutActivity;
-import com.yiguo.recordinganimation.UI.JSONActivity;
+import com.yiguo.recordinganimation.UI.ListViewActivity;
 import com.yiguo.recordinganimation.UI.UiActivity;
 import com.yiguo.recordinganimation.View.ChenjinActivity;
 import com.yiguo.recordinganimation.View.ViewActivity;
-import com.yiguo.recordinganimation.callback.CallBackActivity;
 import com.yiguo.recordinganimation.dagger.DaggerActivity;
 import com.yiguo.recordinganimation.eventBus.EventBusActivity;
 import com.yiguo.recordinganimation.eventBus.MessageEvent;
@@ -36,6 +34,7 @@ import com.yiguo.recordinganimation.popwindows.PopWindowActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.File;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void main(String[] s) {
-
-
-
 //        String dateToStamp = dateToStamp("2019/01/12");
 //        System.out.println("1.getDateToStamp" + dateToStamp);
 //         class VauleCallBack implements Future {
@@ -209,34 +205,20 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 3);
         }
+
         findViewById(R.id.button26).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 startActivity(new Intent(MainActivity.this, LeakeActivity.class));
+                startActivity(new Intent(MainActivity.this, LeakeActivity.class));
 
             }
         });
 
-        findViewById(R.id.button25).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, JSONActivity.class));
-
-            }
-        });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, UiActivity.class));
 
-            }
-        });
-
-        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TimeOutActivity.class));
-                finish();
             }
         });
 
@@ -251,22 +233,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = MainActivity.this.getPackageManager().getLaunchIntentForPackage("com.thinkive.im.huataipush");
-                    startActivity(intent);
+//                    Intent intent = MainActivity.this.getPackageManager().getLaunchIntentForPackage("com.thinkive.im.huataipush");
+//                    startActivity(intent);
+                    if (isInstallByread("com.autonavi.minimap")) {
+                        Intent intent1 = new Intent();
+                        intent1.setAction(Intent.ACTION_VIEW);
+                        intent1.addCategory(Intent.CATEGORY_DEFAULT);
+                         //将功能Scheme以URI的方式传入data
+                        Uri uri = Uri.parse("androidamap://navi?sourceApplication=appname&poiname=fangheng&lat=40.203568&lon=116.312868&dev=1&style=2");
+                        intent1.setData(uri);
+                        //启动该页面即可
+                        startActivity(intent1);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "请安装高德地图", Toast.LENGTH_SHORT).show();
+                    }
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "没有安装", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-
-        findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // startActivity(new Intent(MainActivity.this,CallBackActivity.class));
-                startActivityForResult(new Intent(MainActivity.this, CallBackActivity.class), 214);
-            }
-        });
         findViewById(R.id.button10).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -281,17 +267,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button14).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
-                @SuppressLint("ResourceType")
-                InputStream is = getResources().openRawResource(R.drawable.bj);
-                Bitmap mBitmap = BitmapFactory.decodeStream(is);
-                intent.putExtra("bitmap", mBitmap);
-                startActivity(intent);
-            }
-        });
+
         findViewById(R.id.button15).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -305,16 +281,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MQTTActivity.class);
                 startActivity(intent);
+
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        Log.d("test","延迟执行");
+//                    }
+//                },1000*65);
             }
         });
 
-        findViewById(R.id.button18).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, KeepLiveActivity.class);
-                startActivity(intent);
-            }
-        });
         findViewById(R.id.button19).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -360,16 +337,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        OnepxReceiver.register1pxReceiver(this);
-
     }
 
+    /**
+     * 判断是否安装目标应用
+     *
+     * @param packageName 目标应用安装后的包名
+     * @return 是否已安装目标应用
+     */
+    private boolean isInstallByread(String packageName) {
+        return new File("/data/data/" + packageName).exists();
+    }
 
-    @Override
-    protected void onStop() {
-
-        super.onStop();
-        //  EventBus.getDefault().post(new MessageEvent("Main发送一条消息"));//普通消息事件
+    public void listView(View view) {
+        Intent intent = new Intent(MainActivity.this, ListViewActivity.class);
+        startActivity(intent);
     }
 }

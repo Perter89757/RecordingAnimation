@@ -12,7 +12,11 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="listView"
+            android:text="List_View"/>
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
@@ -23,14 +27,6 @@
             android:text="UI效果" />
 
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="18dp"
-            android:text="超时处理" />
 
 
         <Button
@@ -45,11 +41,7 @@
             android:layout_height="wrap_content"
             android:text="启动其他应用程序" />
 
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="callback-->主线程" />
+
 
         <Button
             android:id="@+id/button10"
@@ -81,11 +73,6 @@
             android:layout_height="wrap_content"
             android:text="MQTT_Demo" />
 
-        <Button
-            android:id="@+id/button18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="进程保活" />
 
         <Button
             android:id="@+id/button19"
@@ -109,7 +96,7 @@
             android:id="@+id/button22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dagger" />
+            android:text="注解" />
 
         <Button
             android:id="@+id/button23"
@@ -122,11 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fragment" />
-        <Button
-            android:id="@+id/button25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="json数据解析" />
+
         <Button
             android:id="@+id/button26"
             android:layout_width="wrap_content"

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yiguo.recordinganimation">
-
-    <uses-sdk tools:overrideLibrary="com.i2trust.sdk" />
+    package="com.yiguo.recordinganimation"> <!-- <uses-sdk tools:overrideLibrary="com.i2trust.sdk" /> -->
+    <uses-sdk tools:overrideLibrary="com.ctetin.expandabletextviewlibrary" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -17,63 +15,29 @@
 
     <application
         android:name=".ThinkiveApplication"
-         android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-         tools:replace="theme">
-        <activity android:name=".View.RoundViewActivity"/>
-        <activity android:name=".MainActivity">
+        tools:replace="theme">
 
+        <activity android:name=".UI.ListViewActivity"/>
+        <activity android:name=".View.RoundViewActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Temp.TimeOutActivity" />
         <activity android:name=".Temp.EmojiActivity" />
-        <activity android:name=".callback.CallBackActivity" />
         <activity android:name=".popwindows.PopWindowActivity" />
         <activity android:name=".View.ViewActivity" />
         <activity android:name=".Temp.HooliganActivity" />
-        <activity android:name=".Service.ServiceActivity" />
         <activity
             android:name=".View.ChenjinActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".Service.AIDLActivity" />
         <activity android:name=".mqtt.MQTTActivity" />
-
-        <service
-            android:name=".Service.PushService"
-            android:enabled="true"
-            android:exported="true"
-            android:process=":push" />
-        <service android:name=".Service.UploadFilesIntentService" />
-        <service
-            android:name=".Service.RemoteService.RemoteService"
-            android:process=":remote" />
-        <service
-            android:name=".Service.loadServiceData.DouBanService"
-            android:process=":douban" />
-        <service
-            android:name=".Service.loadServiceData.RequstDataService"
-            android:process=":douban" />
-        <service android:name=".Service.loadServiceData.ResponseDataIntentService" />
-
-        <receiver
-            android:name=".Service.loadServiceData.ResponeDataBroadcardReceiver"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-
-                <!-- <action android:name="[包名].push.action.NEW_MESSAGE"/> -->
-                <action android:name="com.yiguo.recordinganimation.douban.action.NEW_MESSAGE" />
-                <action android:name="com.yiguo.recordinganimation.douban.action.NEW_CMD_MESSAGE" />
-            </intent-filter>
-        </receiver>
-
-        <activity android:name=".KeepLive.KeepLiveActivity" />
         <activity android:name=".UI.UiActivity" />
         <activity android:name=".UI.FlexBoxActivity" />
         <activity android:name=".View.Circle2Activity" />
@@ -89,26 +53,13 @@
         <activity android:name=".SQL.SQLActivity" />
         <activity android:name=".Fragment.LazyFragmentActivity" />
         <activity android:name=".View.SpanTextViewActivity" />
-        <activity android:name=".UI.JSONActivity" />
         <activity android:name=".View.SlideLayoutActivity" />
         <activity android:name=".memoryLeake.LeakeActivity" />
         <activity android:name=".GlideLoad.ListImageLoadActivity" />
-        <activity android:name=".View.VLayoutActivity" />
-
-        <receiver android:name=".KeepLive.receiver.NotificationClickReceiver" />
-
-        <!--<activity android:name=".KeepLive.activity.OnePixelActivity" />-->
-
-        <!--<service-->
-            <!--android:name=".KeepLive.service.RemoteService"-->
-            <!--android:process=":remote" />-->
-        <!--<service-->
-            <!--android:name=".KeepLive.service.JobHandlerService"-->
-            <!--android:permission="android.permission.BIND_JOB_SERVICE" />-->
-        <!--<service android:name=".KeepLive.service.LocalService" />-->
-
-        <!--<activity android:name=".KeepLive.KeepLiveAppActivity"/>-->
-        <activity android:name=".View.RecordAudioViewActivity"/>
+        <activity
+            android:name=".View.VLayoutActivity"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".View.RecordAudioViewActivity" />
     </application>
 
 </manifest>

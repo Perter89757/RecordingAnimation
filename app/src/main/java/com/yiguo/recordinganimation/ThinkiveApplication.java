@@ -7,10 +7,7 @@ import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.squareup.leakcanary.LeakCanary;
-import com.yiguo.recordinganimation.KeepLive.KeepLive;
-import com.yiguo.recordinganimation.KeepLive.config.ForegroundNotification;
-import com.yiguo.recordinganimation.KeepLive.config.ForegroundNotificationClickListener;
-import com.yiguo.recordinganimation.KeepLive.config.KeepLiveService;
+
 
 /**
  * author: huang_yanhui

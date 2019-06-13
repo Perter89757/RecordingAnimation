@@ -1,18 +1,12 @@
 package com.yiguo.recordinganimation.View;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
-import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
+import com.alibaba.android.vlayout.layout.ColumnLayoutHelper;
 import com.alibaba.android.vlayout.layout.FixLayoutHelper;
 import com.alibaba.android.vlayout.layout.FloatLayoutHelper;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
@@ -22,6 +16,7 @@ import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper;
 import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.yiguo.recordinganimation.R;
+import com.yiguo.recordinganimation.View.adapter.FixLayoutAdapter;
 import com.yiguo.recordinganimation.View.adapter.FloatLayoutAdapter;
 import com.yiguo.recordinganimation.View.adapter.GridHelperAdapter;
 import com.yiguo.recordinganimation.View.adapter.LinearAdapter;
@@ -57,31 +52,25 @@ public class VLayoutActivity extends AppCompatActivity {
         //3加载数据
         DelegateAdapter adapters = new DelegateAdapter(layoutManager, true);
 
+        //栏格布局，都布局在一排
+        ColumnLayoutHelper columnLayoutHelper = new ColumnLayoutHelper();
+       // columnLayoutHelper.
+        adapters.addAdapter(new FixLayoutAdapter(this,columnLayoutHelper));
 
-//        //FixLayoutHelper
-//        FixLayoutHelper fixHelper=new FixLayoutHelper(0,0);
-//        adapters.addAdapter(new FixLayoutAdapter(this,fixHelper));
-//
-        //ColumnLayoutHelper 栏格布局，都布局在一排，可以配置不同列之间的宽度比值
-//        ColumnLayoutHelper columnLayoutHelper=new ColumnLayoutHelper();
-//        adapters.addAdapter(new FixLayoutAdapter(this,columnLayoutHelper));
-
-
-        //floatLayoutHelper
+        //floatLayoutHelper 浮动布局，可以固定显示在屏幕上，但用户可以拖拽其位置
         FloatLayoutHelper layoutHelper = new FloatLayoutHelper();
         layoutHelper.setAlignType(FixLayoutHelper.BOTTOM_RIGHT);
         layoutHelper.setDefaultLocation(100, 400);
-
         adapters.addAdapter(new FloatLayoutAdapter(this, layoutHelper));
 
 
-        //轮播图 singleHelper 只会显示一个组件View
+        //singleHelper 只会显示一个组件View 自定义Adapter 可以用作轮播图
         SingleLayoutHelper singHelper = new SingleLayoutHelper();
         singHelper.setBgColor(R.color.colorPrimary);
         singHelper.setMargin(5, 0, 5, 5);
         adapters.addAdapter(new SingleLayoutAdapter(this, singHelper));
 
-
+        //模拟数据加载
         initGridData();
         // 进行Grid布局
         GridLayoutHelper gridHelper = new GridLayoutHelper(5);
@@ -93,18 +82,18 @@ public class VLayoutActivity extends AppCompatActivity {
         gridHelper.setHGap(5);
         gridHelper.setMarginLeft(30);
         gridHelper.setMarginBottom(30);
-        //自动填充满布局
+         //自动填充满布局
         gridHelper.setAutoExpand(true);
         adapters.addAdapter(new GridHelperAdapter(imgSrc, gridHelper));
 
 
-        //吸顶的Helper
+        //吸顶的Helper  固定
         StickyLayoutHelper stickyHelper = new StickyLayoutHelper();
         adapters.addAdapter(new StickyLayoutAdapter(stickyHelper));
 
 
         initOnePlusData();
-        //onePlusNHelper
+        //onePlusNHelper 一拖N布局，可以配置1-5个子元素
         OnePlusNLayoutHelper helper = new OnePlusNLayoutHelper();
         helper.setBgColor(R.color.colorPrimary);
         helper.setPadding(5, 5, 5, 5);
@@ -186,80 +175,6 @@ public class VLayoutActivity extends AppCompatActivity {
     private void initLinearData() {
         for (int i = 0; i < 18; i++) {
             lists.add(" LinearHelper :" + i);
-        }
-    }
-
-
-    static class SubAdapter extends DelegateAdapter.Adapter<MainViewHolder> {
-
-        private Context mContext;
-
-        private LayoutHelper mLayoutHelper;
-
-
-        private VirtualLayoutManager.LayoutParams mLayoutParams;
-        private int mCount = 0;
-
-
-        public SubAdapter(Context context, LayoutHelper layoutHelper, int count) {
-            this(context, layoutHelper, count, new VirtualLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
-        }
-
-        public SubAdapter(Context context, LayoutHelper layoutHelper, int count, @NonNull VirtualLayoutManager.LayoutParams layoutParams) {
-            this.mContext = context;
-            this.mLayoutHelper = layoutHelper;
-            this.mCount = count;
-            this.mLayoutParams = layoutParams;
-        }
-
-        @Override
-        public LayoutHelper onCreateLayoutHelper() {
-            return mLayoutHelper;
-        }
-
-        @Override
-        public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MainViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item, parent, false));
-        }
-
-        @Override
-        public void onBindViewHolder(MainViewHolder holder, int position) {
-            // only vertical
-            holder.itemView.setLayoutParams(
-                    new VirtualLayoutManager.LayoutParams(mLayoutParams));
-        }
-
-
-        @Override
-        protected void onBindViewHolderWithOffset(MainViewHolder holder, int position, int offsetTotal) {
-            ((TextView) holder.itemView.findViewById(R.id.title)).setText(Integer.toString(offsetTotal));
-        }
-
-        @Override
-        public int getItemCount() {
-            return mCount;
-        }
-    }
-
-
-    static class MainViewHolder extends RecyclerView.ViewHolder {
-
-        /**
-         * 滑动退出了多少个条目
-         */
-        public static volatile int existing = 0;
-        public static int createdTimes = 0;
-
-        public MainViewHolder(View itemView) {
-            super(itemView);
-            createdTimes++;
-            existing++;
-        }
-
-        @Override
-        protected void finalize() throws Throwable {
-            existing--;
-            super.finalize();
         }
     }
 }

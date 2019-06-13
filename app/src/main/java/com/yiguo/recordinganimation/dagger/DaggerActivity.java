@@ -16,14 +16,10 @@ public class DaggerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dagger);
-       // DaggerUserComonpent.builder().userModule(new UserModule("jack")).build().inject(this);
-        DaggerUserComonpent.builder().userModule(new UserModule()).build().inject(this);
         initData();
     }
 
     private void initData() {
-        // user = new User();
-      //  user.setName("测试");
-        Log.d("dagger",user.getName());
+
     }
 }
