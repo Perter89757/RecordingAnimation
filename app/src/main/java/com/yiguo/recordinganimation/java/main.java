@@ -12,13 +12,32 @@ import java.util.Set;
 class main {
 
     public static void main(String[] args) {
-        findCharNum();
-        HashMapTest();
+        //findCharNum();
+        //HashMapTest();
+        threadWati();
+
+        System.out.println("输出log: wait(1mills)");
+    }
+
+    private   static void threadWati() {
+        Object o = new Object();
+        System.out.println("1.threadWati");
+
+        synchronized (o) {
+            try {
+                o.wait(3000);
+                System.out.println("输出log: wait()");
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     //hashMap测试
     private static void HashMapTest() {
-        Map<String,Integer> map = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>();
 
     }
 
